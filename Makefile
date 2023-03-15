@@ -6,7 +6,7 @@
 #    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/03/15 21:48:13 by rehernan         ###   ########.fr        #
+#    Updated: 2023/03/15 21:50:41 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ all:$(NAME)
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) ft_printf/libftprintf.a
 	$(CC) $(OBJS) -Lmlx -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
 
 ft_printf/libftprintf.a:
