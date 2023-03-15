@@ -6,15 +6,15 @@
 #    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/03/15 21:50:41 by rehernan         ###   ########.fr        #
+#    Updated: 2023/03/15 21:58:51 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRCS = main.c \
-		errors.c \
-		parsing.c
+SRCS =	./SRC/main.c 		\
+		./SRC/errors.c 		\
+		./SRC/parsing.c
 
 OBJS = $(SRCS:.c=.o)
 
