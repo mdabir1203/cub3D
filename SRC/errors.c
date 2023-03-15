@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/15 22:03:33 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:10:22 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 void	ft_exiterr(int err)
 {
-	int	status;
-
-	status = err;
 	if (err == 1)
 		ft_putstr_fd("Not enough arguments.\n", 2);
 	else if (err == 2)
