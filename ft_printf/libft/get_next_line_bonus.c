@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:30:59 by rehernan          #+#    #+#             */
-/*   Updated: 2022/01/14 20:48:09 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:40:52 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_next_line(int fd)
 {
 	static char		*whatever[8000];
 	char			*dest;
-	char			line[BUFFER_SIZE + 1];
+	char			*line;
 	int				size;
 
 	size = read(fd, line, BUFFER_SIZE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/15 22:03:56 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:45:49 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,11 @@ void	mlx_f(void)
 
 int	main(int argc, char **argv)
 {
-	//t_main	main;
+	t_main	main;
 
-	(void) argv;
-	if (argc != 2)
-	{
-		//error_message("");
-		write(2, "Incorrect amount of arguments!", 31);
-		exit(1);
-	}
-	//parsing(&main);
+	initialize_main(&main);
+	check_basic_errors(&main, argc, argv);
+	parsing(&main);
 	mlx_f();
 	return (0);
 }
