@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/03/17 17:19:19 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/03/19 19:12:15 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cub3d
 SRCS =	./SRC/main.c 		\
 		./SRC/errors.c 		\
 		./SRC/parsing.c		\
-		./SRC/init.c
+		./SRC/init.c		\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -28,24 +28,25 @@ MLX_PATH = mlx
 all:$(NAME)
 
 %.o: %.c
-	$(CC) -fsanitize=address -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-$(NAME): $(OBJS) ft_printf/libftprintf.a
-	$(CC) $(OBJS) -fsanitize=address -Lmlx -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
+$(NAME): libftprintf/libftprintf.a $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) -Lmlx -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
 
-ft_printf/libftprintf.a:
-	make -C ft_printf
-	cp ft_printf/libftprintf.a .
+libftprintf/libftprintf.a:
+	make -C libftprintf
+	cp libftprintf/libftprintf.a .
 	@echo "Making libftprintf..."
 
 clean:
-	make clean -C ft_printf
+	make -C libftprintf clean
 	rm -f $(OBJS)
 	@echo "cleaning..."
 
 fclean: clean
+	make -C libftprintf fclean
 	rm -f $(NAME)
-	@echo "force cleaning..."
+	@echo "fully cleaning..."
 
 re: fclean all
 	@echo "remaking files..."
