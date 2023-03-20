@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/03/19 19:12:15 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/03/20 19:03:35 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS =	./SRC/main.c 		\
 		./SRC/errors.c 		\
 		./SRC/parsing.c		\
 		./SRC/init.c		\
+		./SRC/errors_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

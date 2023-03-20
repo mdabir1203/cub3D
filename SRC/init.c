@@ -6,12 +6,11 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/17 17:22:48 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:01:45 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 /**
  * FILE (init.c) FUNCTION (initialize_main):

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/17 17:45:41 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:01:23 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define CUB3D_H
 
 //Headers
+# include <stdbool.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "../ft_printf/ft_printf.h"
+# include "../libftprintf/ft_printf.h"
 
 typedef struct s_main
 {
@@ -33,6 +34,12 @@ typedef struct s_main
 	int		f[3];
 	int		c[3];
 }t_main;
+
+//errors_utils.c
+bool	map_fragment_found(char *buffer);
+bool	match_component_name(char *name);
+bool	component_found(char *str);
+void	find_trash(t_main *main, char *s);
 
 //errors.c
 void	ft_exiterr(int err);
@@ -50,6 +57,8 @@ void	open_the_file(t_main *main, char **argv);
 # define INVALID_ARGS			2
 # define WRONG_FILE_EXTENSION 	3
 # define FILE_IS_NOT_THERE 		4
+# define INCORECT_FILE_CONFIG	5
+# define CUB_CONTAINS_TRASH		6
 
 //Colors
 # define BLANK "\033[0m"
