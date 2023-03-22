@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/20 19:00:55 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:17:26 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,23 @@
 void	ft_exiterr(int err)
 {
 	if (err == NOT_ENOUGH_ARGS)
-		ft_putstr_fd(RED "Not enough arguments!\n" BLANK, 2);
+		ft_putstr_fd(RED "Not enough arguments!\n" B, 2);
 	else if (err == INVALID_ARGS)
-		ft_putstr_fd(RED "Invalid arguments!\n" BLANK, 2);
+		ft_putstr_fd(RED "Invalid arguments!\n" B, 2);
 	else if (err == WRONG_FILE_EXTENSION)
-		ft_putstr_fd(RED "Incorrect file extension! I only accept files with [.cub] extension!\n" BLANK, 2);
+		ft_putstr_fd(RED "Invalid file Ext! Only files with [.cub] Ext!\n" B, 2);
 	else if (err == FILE_IS_NOT_THERE)
-		ft_putstr_fd(RED "File does not exist!\n" BLANK, 2);
+		ft_putstr_fd(RED "File does not exist!\n" B, 2);
 	else if (err == INCORECT_FILE_CONFIG)
-		ft_putstr_fd(RED "Map has to be the last in config file!\n" BLANK, 2);
+		ft_putstr_fd(RED "Map has to be the last in config file!\n" B, 2);
 	else if (err == CUB_CONTAINS_TRASH)
-		ft_putstr_fd(RED ".cub file contains trash characters!\n" BLANK, 2);
+		ft_putstr_fd(RED ".cub file contains trash characters!\n" B, 2);
+	else if (err == MISSING_ELEMENT_PATH)
+		ft_putstr_fd(RED "Texure path is not specified!\n" B, 2);
+	else if (err == FOUND_ELEMENT_TRASH)
+		ft_putstr_fd(RED "Please check the texure field!\n" B, 2);
+	else if (err == INCORECT_COLOR_VAL)
+		ft_putstr_fd(RED "Invalid color: 0-255,0-255,0-255\n" B, 2);
 	exit (err);
 }
 

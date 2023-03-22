@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/20 19:01:23 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:29:54 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,41 @@ typedef struct s_main
 	char	*west_t;
 	char	*east_t;
 
-	int		f[3];
-	int		c[3];
+	int		floor;
+	int		roof;
 }t_main;
+
+//colors.c
+void	take_care_of_color(char *buffer, t_main *m, char id);
 
 //errors_utils.c
 bool	map_fragment_found(char *buffer);
 bool	match_component_name(char *name);
 bool	component_found(char *str);
 void	find_trash(t_main *main, char *s);
+void	parsing_cleaning(t_main *main, char *arr, int err);
 
 //errors.c
 void	ft_exiterr(int err);
 void	check_basic_errors(t_main *main, int argc, char **argv);
+
+//free.c
+void	clear_the_main_struct(t_main *main);
 
 //init.c
 void	initialize_main(t_main *main);
 
 //parsing.c
 void	parsing(t_main *main);
+
+//texure_handling.c
+char	*save_element(t_main *main, char *buffer);
+void	take_care_of_texure(char *buffer, t_main *main, char name);
+
+//utils.c
+bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
+
 
 //ERROR Codes
 # define NOT_ENOUGH_ARGS 		1
@@ -59,9 +74,12 @@ void	open_the_file(t_main *main, char **argv);
 # define FILE_IS_NOT_THERE 		4
 # define INCORECT_FILE_CONFIG	5
 # define CUB_CONTAINS_TRASH		6
+# define MISSING_ELEMENT_PATH	7
+# define FOUND_ELEMENT_TRASH	8
+# define INCORECT_COLOR_VAL		9
 
 //Colors
-# define BLANK "\033[0m"
+# define B "\033[0m"
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
 # define YELL "\033[0;33m"

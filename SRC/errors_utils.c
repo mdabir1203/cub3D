@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:56:13 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/20 18:59:36 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:21:40 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ bool	component_found(char *str)
 	while (str[start] != '\0' && (str[start] == ' ' || str[start] == '\t'))
 		start++;
 	i = start;
-	while (str[i] != '\0' && (str[i] != ' ' && str[i] != '\t'))
-	{
-		len++;
+	while (str[i] != '\0' && str[i] != ' ')
 		i++;
-	}
-	name = ft_substr(str, start, len);
+	len = i;
+	while (str[len] != '\0' && str[len] == ' ')
+		len++;
+	if (str[len] == '\0' || str[len] == '\t' || str[len] == '\n')
+		return (false);
+	name = ft_substr(str, start, i - start - 1);
 	check = match_component_name(name);
 	free(name);
 	return (check);
@@ -85,4 +87,12 @@ void	find_trash(t_main *main, char *s)
 		close(main->file_fd);
 		ft_exiterr(CUB_CONTAINS_TRASH);
 	}
+}
+
+void	parsing_cleaning(t_main *main, char *arr, int err)
+{
+	if (arr != NULL)
+		free(arr);
+	clear_the_main_struct(main);
+	ft_exiterr(err);
 }

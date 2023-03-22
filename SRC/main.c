@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/17 17:45:49 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:54:19 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	mlx_f(void)
 	i = 0;
 	while (i < 100)
 	{
-		my_mlx_pixel_put(&img, 0 + i, 0, 0x00FF0000);
+		my_mlx_pixel_put(&img, 0 + i, 0, 16711680);
 		i++;
 	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);

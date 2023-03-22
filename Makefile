@@ -6,17 +6,21 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/03/20 19:03:35 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/03/22 18:30:31 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRCS =	./SRC/main.c 		\
-		./SRC/errors.c 		\
-		./SRC/parsing.c		\
-		./SRC/init.c		\
-		./SRC/errors_utils.c\
+SRCS =	./SRC/main.c 			\
+		./SRC/errors.c 			\
+		./SRC/parsing.c			\
+		./SRC/init.c			\
+		./SRC/errors_utils.c	\
+		./SRC/free.c			\
+		./SRC/texure_handling.c \
+		./SRC/utils.c			\
+		./SRC/colors.c
 
 OBJS = $(SRCS:.c=.o)
 

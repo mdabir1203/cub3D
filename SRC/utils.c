@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 17:54:50 by lkavalia         ###   ########.fr       */
+/*   Created: 2023/03/22 18:28:11 by lkavalia          #+#    #+#             */
+/*   Updated: 2023/03/22 18:29:44 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * FILE (init.c) FUNCTION (initialize_main):
- * initializes all of the information in t_main struct to default state. 
- */
-void	initialize_main(t_main *main)
+bool	match(char *searched, char *str)
 {
 	int	i;
+	int	x;
 
 	i = 0;
-	main->file_fd = -1;
-	main->north_t = NULL;
-	main->south_t = NULL;
-	main->west_t = NULL;
-	main->east_t = NULL;
-	main->floor = 0;
-	main->roof = 0;
+	x = 0;
+	while (str[i] != '\0' && str[i] == ' ')
+		i++;
+	while (searched[x] != '\0' && str[i] != '\0' && searched[x] == str[i])
+	{
+		x++;
+		i++;
+	}
+	if (searched[x] == '\0' && str[i] == ' ')
+		return (true);
+	return (false);
+}
+
+void	open_the_file(t_main *main, char **argv)
+{
+	int	fd;
+
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		ft_exiterr(FILE_IS_NOT_THERE);
+	main->file_fd = fd;
 }
