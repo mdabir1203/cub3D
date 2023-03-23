@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/03/22 18:30:31 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/03/23 18:40:42 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS =	./SRC/main.c 			\
 		./SRC/free.c			\
 		./SRC/texure_handling.c \
 		./SRC/utils.c			\
-		./SRC/colors.c
+		./SRC/colors.c			\
+		./SRC/map.c
 
 OBJS = $(SRCS:.c=.o)
 

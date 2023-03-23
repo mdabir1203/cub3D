@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 17:54:19 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:31:07 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 
 	initialize_main(&main);
 	check_basic_errors(&main, argc, argv);
-	parsing(&main);
+	parsing(&main, argv);
 	mlx_f();
 	return (0);
 }

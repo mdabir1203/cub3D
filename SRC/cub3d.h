@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 18:29:54 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:39:55 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,13 @@ void	clear_the_main_struct(t_main *main);
 //init.c
 void	initialize_main(t_main *main);
 
+//map.c
+bool	check_for_map_start(char *buffer, t_main *main);
+int		map_skip_space(int i, char *b, char id);
+int		check_map_fragments(t_main *main, char *b, int *c);
+
 //parsing.c
-void	parsing(t_main *main);
+void	parsing(t_main *main, char **argv);
 
 //texure_handling.c
 char	*save_element(t_main *main, char *buffer);
@@ -77,6 +82,10 @@ void	open_the_file(t_main *main, char **argv);
 # define MISSING_ELEMENT_PATH	7
 # define FOUND_ELEMENT_TRASH	8
 # define INCORECT_COLOR_VAL		9
+# define TAB_IN_MAP_FOUND		10
+# define MAP_NOT_CLOSED			11
+# define WRONG_INFO_IN_MAP		12
+# define EMPTY_LINE_IN_MAP		13
 
 //Colors
 # define B "\033[0m"
