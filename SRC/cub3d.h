@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/23 18:39:55 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:16:06 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@
 typedef struct s_main
 {
 	int		file_fd;
+	char	player_direction;
+	char	player_pos_x;
+	char	player_pos_y;
 	char	*north_t;
 	char	*south_t;
 	char	*west_t;
 	char	*east_t;
+	char	**map;
 
 	int		floor;
 	int		roof;
@@ -86,6 +90,7 @@ void	open_the_file(t_main *main, char **argv);
 # define MAP_NOT_CLOSED			11
 # define WRONG_INFO_IN_MAP		12
 # define EMPTY_LINE_IN_MAP		13
+# define MORE_THAN_ONE_PLAYER	14
 
 //Colors
 # define B "\033[0m"

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/23 18:20:51 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:22:35 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_exiterr(int err)
 		ft_putstr_fd(RED "ERROR map possible characters: 'NSEW10 '!\n" B, 2);
 	else if (err == EMPTY_LINE_IN_MAP)
 		ft_putstr_fd(RED "Empty line beetween the map lines!\n" B, 2);
+	else if (err == MORE_THAN_ONE_PLAYER)
+		ft_putstr_fd(RED "There is more than 1 player!\n" B, 2);
 	exit (err);
 }
 

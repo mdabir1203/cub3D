@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 17:54:50 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:14:26 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
  */
 void	initialize_main(t_main *main)
 {
-	int	i;
-
-	i = 0;
 	main->file_fd = -1;
+	main->player_direction = '0';
+	main->player_pos_x = 0;
+	main->player_pos_y = 0;
 	main->north_t = NULL;
 	main->south_t = NULL;
 	main->west_t = NULL;
 	main->east_t = NULL;
 	main->floor = 0;
 	main->roof = 0;
+	main->map = NULL;
 }
