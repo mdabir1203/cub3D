@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/24 14:22:35 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:25:06 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	ft_exiterr(int err)
 		ft_putstr_fd(RED "Empty line beetween the map lines!\n" B, 2);
 	else if (err == MORE_THAN_ONE_PLAYER)
 		ft_putstr_fd(RED "There is more than 1 player!\n" B, 2);
+	else if (err == MAP_IS_NOT_CLOSED)
+		ft_putstr_fd(RED "Map is not closed!\n" B, 2);
+	else if (err == PLAYER_DOES_NOT_EXIST)
+		ft_putstr_fd(RED "Player does not exist in the map!\n" B, 2);
 	exit (err);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/24 14:16:06 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:51:12 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@
 typedef struct s_main
 {
 	int		file_fd;
-	char	player_direction;
-	char	player_pos_x;
-	char	player_pos_y;
+
+	char	p_dir;
+	char	p_pos_x;
+	char	p_pos_y;
 	char	*north_t;
 	char	*south_t;
 	char	*west_t;
 	char	*east_t;
 	char	**map;
-
+	int		height;
 	int		floor;
 	int		roof;
 }t_main;
@@ -75,7 +76,6 @@ void	take_care_of_texure(char *buffer, t_main *main, char name);
 bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
 
-
 //ERROR Codes
 # define NOT_ENOUGH_ARGS 		1
 # define INVALID_ARGS			2
@@ -91,6 +91,8 @@ void	open_the_file(t_main *main, char **argv);
 # define WRONG_INFO_IN_MAP		12
 # define EMPTY_LINE_IN_MAP		13
 # define MORE_THAN_ONE_PLAYER	14
+# define MAP_IS_NOT_CLOSED		15
+# define PLAYER_DOES_NOT_EXIST	16
 
 //Colors
 # define B "\033[0m"
