@@ -6,11 +6,58 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:29:41 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/23 18:39:59 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:33:09 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static char	*save_map_line(char *buffer)
+{
+	int		len;
+	char	*map_line;
+
+	len = 0;
+	while (buffer[len] != '\0' && buffer[len] != '\n')
+		len++;
+	map_line = malloc((len + 1) * sizeof(char));
+	map_line[len--] = '\0';
+	while (len >= 0)
+	{
+		map_line[len] = buffer[len];
+		len--;
+	}
+	return (map_line);
+}
+
+void	save_map(t_main *main, char **argv, int len)
+{
+	int		i;
+	int		line_len;
+	char	*buffer;
+
+	i = 0;
+	line_len = 0;
+	close(main->file_fd);
+	open_the_file(main, argv);
+	buffer = get_next_line(main->file_fd);
+	while (buffer != NULL && check_for_map_start(buffer, main) == false)
+	{
+		free(buffer);
+		buffer = get_next_line(main->file_fd);
+	}
+	main->map = malloc((len + 1) * sizeof(char *));
+	while (buffer != NULL && i < len)
+	{
+		main->map[i] = save_map_line(buffer);
+		free(buffer);
+		buffer = get_next_line(main->file_fd);
+		i++;
+	}
+	main->map[i] = NULL;
+	main->height = len;
+	close(main->file_fd);
+}
 
 bool	check_for_map_start(char *buffer, t_main *main)
 {

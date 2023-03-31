@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/27 17:51:12 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:34:36 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,18 @@ typedef struct s_main
 	int		roof;
 }t_main;
 
+//checking_map.c
+void	check_line_top_and_bottom(t_main *main);
+int		check_right(t_main *main, int x, int y, int x_r);
+int		check_middle(t_main *main, int x, int y);
+int		check_left(t_main *main, int x, int y, int x_l);
+void	check_spaces(t_main *main, int x, int y);
+
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
+
+//debugging.c
+void	check_map(t_main *main);
 
 //errors_utils.c
 bool	map_fragment_found(char *buffer);
@@ -61,12 +71,16 @@ void	clear_the_main_struct(t_main *main);
 void	initialize_main(t_main *main);
 
 //map.c
+void	save_map(t_main *main, char **argv, int len);
 bool	check_for_map_start(char *buffer, t_main *main);
 int		map_skip_space(int i, char *b, char id);
 int		check_map_fragments(t_main *main, char *b, int *c);
 
 //parsing.c
 void	parsing(t_main *main, char **argv);
+
+//player.c
+void	check_player_direction(t_main *main);
 
 //texure_handling.c
 char	*save_element(t_main *main, char *buffer);
