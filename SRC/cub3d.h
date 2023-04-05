@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/31 12:34:36 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:37:50 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libftprintf/ft_printf.h"
+
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 typedef struct s_main
 {
@@ -39,6 +52,11 @@ typedef struct s_main
 	int		floor;
 	int		roof;
 }t_main;
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+void	draw_flat_map(t_main *main, t_data *data);
+void	draw_player(t_data *img, int x_p, int y_p);
 
 //checking_map.c
 void	check_line_top_and_bottom(t_main *main);
@@ -115,11 +133,26 @@ void	open_the_file(t_main *main, char **argv);
 # define YELL "\033[0;33m"
 # define CYAN "\033[0;36m"
 
+//Moving
+# define LEFT_KEY	124
+# define RIGHT_KEY	123
+# define W_KEY		13
+# define S_KEY		1
+# define D_KEY		2
+# define A_KEY		0
+# define ESC_KEY	53
+
+
+# define T_HEIGTH	30
+# define T_WIDTH	30
+
 //Things
-# define D_NO
+# define D_NO "./default_north.xpm"
 # define D_SO
 # define D_WE
 # define D_EA
 # define D_F "220,100,0"
 # define D_C "225,30,0"
+
+//Keys
 #endif
