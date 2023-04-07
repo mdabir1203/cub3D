@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 16:48:41 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:21:49 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,27 @@ void	open_the_file(t_main *main, char **argv);
 # define CYAN "\033[0;36m"
 
 //Moving
-# define LEFT_KEY	124
-# define RIGHT_KEY	123
-# define W_KEY		13
-# define S_KEY		1
-# define D_KEY		2
-# define A_KEY		0
-# define ESC_KEY	53
+# ifdef __APPLE__
+#  define LEFT_KEY	124
+#  define RIGHT_KEY	123
+#  define W_KEY		13
+#  define S_KEY		1
+#  define D_KEY		2
+#  define A_KEY		0
+#  define ESC_KEY	53
+# elif __linux__
+#  define LEFT_KEY 	97
+#  define RIGHT_KEY 100
+#  define W_KEY		119
+#  define S_KEY		115
+#  define D_KEY		100
+#  define A_KEY		97
+#  define ESC_KEY	65307
+# endif
 
 
-# define T_HEIGTH	30
-# define T_WIDTH	30
+# define T_HEIGTH	10
+# define T_WIDTH	10
 
 //Things
 # define D_NO "./default_north.xpm"
