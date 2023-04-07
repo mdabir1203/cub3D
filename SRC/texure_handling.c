@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texure_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:30:45 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 14:36:45 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:09:09 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,15 @@ char	*save_element(t_main *main, char *buffer)
 		while (split[i] != NULL)
 			free(split[i++]);
 		free(split);
+		free(element_name);
 		clear_the_main_struct(main);
 		ft_exiterr(FOUND_ELEMENT_TRASH);
 	}
 	element_path = prepare_element_path(split[1]);
+	i = 0;
+	while (split[i] != NULL)
+		free(split[i++]);
+	free(split);
 	free(element_name);
 	return (element_path);
 }
