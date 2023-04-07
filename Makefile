@@ -6,11 +6,11 @@
 #    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/07 15:32:58 by rehernan         ###   ########.fr        #
+#    Updated: 2023/04/07 15:58:10 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3d 
 
 SRCS =	./SRC/main.c 			\
 		./SRC/errors.c 			\
@@ -33,7 +33,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-all:$(NAME)
+all: submodule $(NAME)
 
 UNAME := $(shell uname)
 %.o: %.c
@@ -42,6 +42,9 @@ minilibx-linux/libmlx.a:
 	make -C minilibx-linux
 	cp MLX/libmlx.a
 	@echo "Making MLX..."
+
+submodule:
+	git submodule update --init
 
 ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
@@ -71,3 +74,5 @@ fclean: clean
 
 re: fclean all
 	@echo "remaking files..."
+
+.PHONY: all clean fclean re submodule
