@@ -6,7 +6,7 @@
 #    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/07 15:58:10 by rehernan         ###   ########.fr        #
+#    Updated: 2023/04/07 15:59:49 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ minilibx-linux/libmlx.a:
 	@echo "Making MLX..."
 
 submodule:
-	git submodule update --init
+	@git submodule update --init
 
 ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
