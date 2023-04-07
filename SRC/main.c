@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 12:58:09 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:49:05 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ int	close_game(t_vars *vars)
 	exit(0);
 }
 
-int	key_hook(int keycode, t_vars *vars, t_hive *hive)
+int	key_hook(int keycode, t_hive *hive)
 {
-	(void)vars;
-	// (void)img;
-	// (void)main;
 	if (keycode == 124)
 		printf("Left arrow key!\n");
 	if (keycode == 123)
@@ -40,7 +37,8 @@ int	key_hook(int keycode, t_vars *vars, t_hive *hive)
 	if (keycode == W_KEY)
 	{
 		printf("W key!\n");
-		mlx_clear_window(vars->mlx, vars->win);
+		mlx_clear_window(hive->vars->mlx, hive->vars->win);
+		check_map(hive->main);
 		//main->p_pos_y += 10;
 		//draw_player(img, main->p_pos_x, main->p_pos_y);
 	}
@@ -53,32 +51,26 @@ int	key_hook(int keycode, t_vars *vars, t_hive *hive)
 	if (keycode == 53)
 	{
 		printf("ESC key!\n");
-		close_game(vars);
+		close_game(hive->vars);
 	}
 	printf("Hello from key_hook! %d\n", keycode);
 	return (0);
 }
 
-void	mlx_f(t_data *img, t_vars *vars, t_main *main, t_hive *hive)
+void	mlx_f(t_hive *h)
 {
 	int	i;
-	int img_width;
-	int img_height;
-	
+	int	img_width;
+	int	img_height;
+
 	img_height = 0;
 	img_width = 0;
 	//img->img = mlx_xpm_file_to_image(vars->mlx, D_NO, &img_width, &img_height);
 	i = 0;
-	// while (i < 100)
-	// {
-	// 	my_mlx_pixel_put(img, 0 + i, 0, 16711680);
-	// 	i++;
-	// }
-	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
-	mlx_key_hook(vars->win, key_hook, vars);
-	mlx_hook(vars->win, 17, 0L, close_game, vars);
-	mlx_loop(vars->mlx);
-	(void)main;
+	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
+	mlx_key_hook(h->vars->win, key_hook, h);
+	mlx_hook(h->vars->win, 17, 0L, close_game, h->vars);
+	mlx_loop(h->vars->mlx);
 }
 
 void	initialize_mlx(t_data *img, t_vars *vars)
@@ -110,6 +102,6 @@ int	main(int argc, char **argv)
 	parsing(&main, argv);
 	initialize_mlx(&data, &vars);
 	draw_flat_map(&main, &data);
-	mlx_f(&data, &vars, &main);
+	mlx_f(&hive);
 	return (0);
 }
