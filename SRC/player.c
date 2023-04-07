@@ -6,12 +6,17 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:30:40 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/31 12:31:25 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:40:22 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * FUNCTION: (check_player_direction) checks that there would be a player.
+ * 				That there would not be more than one player. And then it saves
+ * 				the position of the player and its direction in the main struct.
+ */
 void	check_player_direction(t_main *main)
 {
 	int		i;

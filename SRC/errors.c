@@ -6,14 +6,18 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/27 12:25:06 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:37:23 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //TODO: ENUMS for readability
-
+/**
+ * FUNCTION: (ft_exiterr) is responsible for matching the err number with
+ * 				its error and outputting the error message into the terminal
+ * 				using ft_putstr_fd.
+ */
 void	ft_exiterr(int err)
 {
 	if (err == NOT_ENOUGH_ARGS)
@@ -52,6 +56,10 @@ void	ft_exiterr(int err)
 }
 
 //Checks if the file extension is .cub
+/**
+ * FUNCTION: (check_file_extension) checks that the file
+ * 				extension would be .cub
+ */
 static void	check_file_extension(char *filename)
 {
 	int		i;
@@ -68,6 +76,11 @@ static void	check_file_extension(char *filename)
 	free(file_ex);
 }
 
+/**
+ * FUNCTION: (check_for_tabs) checks for the tab in the given line.
+ * 				if it finds one it outputs and error because subject
+ * 				pdf specifies that only spaces should be valid.
+ */
 static void	check_for_tabs(t_main *main, char *buffer)
 {
 	int	i;
@@ -79,6 +92,12 @@ static void	check_for_tabs(t_main *main, char *buffer)
 		parsing_cleaning(main, buffer, TAB_IN_MAP_FOUND);
 }
 
+/**
+ * FUNCTION: (check_file_config) it just checks that the map
+ * 				would be after the information about the map like
+ * 				ceiling floor color and the texures for each wall.
+ * 				Also, checks for the tab using (check_for_tabs) function.
+ */
 static void	check_file_config(t_main *main)
 {
 	bool	map_found;
@@ -105,6 +124,16 @@ static void	check_file_config(t_main *main)
 	}
 }
 
+/**
+ * FUNCTION: (check_basic_erros) performs checks before the map is parsed.
+ *		1. @argument_ammount: it checks if the argument ammount is correct.
+		2. @check_file_extension: it checks that the file extension would be .cub
+ * 		3. @open_the_file: it OPENS the given file and checks the file descriptor if its
+ * 				a valid one it saves it in the struct.
+ * 		4. @check_file_config: Checks for any tabs. It checks that the information
+ * 			about the map would be before the map itself. it checks that there would
+ * 			not be anything that is not supposed to be there according to pdf.
+ */
 void	check_basic_errors(t_main *main, int argc, char **argv)
 {
 	if (argc != 2)

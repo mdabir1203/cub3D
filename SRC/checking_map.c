@@ -6,32 +6,18 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:24:37 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/31 12:29:58 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:52:27 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_line_top_and_bottom(t_main *main)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = main->height - 1;
-	while (main->map[0][i] != '\0' && \
-			main->map[0][i] != '0' && main->map[0][i] != main->p_dir)
-		i++;
-	if (main->map[0][i] == '0' || main->map[0][i] == main->p_dir)
-		parsing_cleaning(main, NULL, MAP_IS_NOT_CLOSED);
-	i = 0;
-	while (main->map[len][i] != '\0' && \
-			main->map[len][i] != '0' && main->map[len][i] != main->p_dir)
-		i++;
-	if (main->map[len][i] == '0' || main->map[len][i] == main->p_dir)
-		parsing_cleaning(main, NULL, MAP_IS_NOT_CLOSED);
-}
-
+/**
+ * FUNCTION: (check_right) checks the area on the right of the space.
+ * 				111 <--- possible to be 0 or 1
+ * 				1 1 <--- can only be 1
+ * 				111 <--- possible to be 0 or 1
+ */
 int	check_right(t_main *main, int x, int y, int x_r)
 {
 	int	y_up;
@@ -61,6 +47,17 @@ int	check_right(t_main *main, int x, int y, int x_r)
 	return (0);
 }
 
+/**
+ * FUNCTION: (check_middle) checks the middle of around the space if
+ * 				the grid does not contain 0 or player directions.
+ * 			can be only one
+ * 				|
+ * 			   111
+ * 			   1 1
+ * 			   111
+ * 				|
+ * 			can be only one	
+ */
 int	check_middle(t_main *main, int x, int y)
 {
 	int	y_up;
@@ -79,6 +76,13 @@ int	check_middle(t_main *main, int x, int y)
 	return (0);
 }
 
+/**
+ * FUNCTION: (check_left) checks if the spaces to the left of the space
+ * 				are valid.
+ * 		can be 0 1 or space -->111
+ * 		can be 1 or space	-->1 1
+ * 		can be 0 1 or space	-->111
+ */
 int	check_left(t_main *main, int x, int y, int x_l)
 {
 	int	y_d;
@@ -108,6 +112,10 @@ int	check_left(t_main *main, int x, int y, int x_l)
 	return (0);
 }
 
+/**
+ * FUNCTION: (check_spaces) takes care of checking around of each cell 
+ * 			that is empty if nearby cells are empty too.
+ */
 void	check_spaces(t_main *main, int x, int y)
 {
 	while (y < main->height)

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/04 18:37:50 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:01:13 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_data *img, int x_p, int y_p);
 
 //checking_map.c
-void	check_line_top_and_bottom(t_main *main);
 int		check_right(t_main *main, int x, int y, int x_r);
 int		check_middle(t_main *main, int x, int y);
 int		check_left(t_main *main, int x, int y, int x_l);

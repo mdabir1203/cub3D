@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/04 18:46:20 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:19:08 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,18 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	key_hook(int keycode, t_vars *vars, t_data *img, t_main *main)
+int	close_game(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	// clear_the_main_struct(main);
+	exit(0);
+}
+
+int	key_hook(int keycode, t_vars *vars)
 {
 	(void)vars;
-	(void)img;
-	(void)main;
+	// (void)img;
+	// (void)main;
 	if (keycode == 124)
 		printf("Left arrow key!\n");
 	if (keycode == 123)
@@ -43,12 +50,15 @@ int	key_hook(int keycode, t_vars *vars, t_data *img, t_main *main)
 	if (keycode == 0)
 		printf("A key!\n");
 	if (keycode == 53)
+	{
 		printf("ESC key!\n");
+		close_game(vars);
+	}
 	printf("Hello from key_hook! %d\n", keycode);
 	return (0);
 }
 
-void	mlx_f(t_data *img, t_vars *vars)
+void	mlx_f(t_data *img, t_vars *vars, t_main *main)
 {
 	int	i;
 	int img_width;
@@ -64,8 +74,10 @@ void	mlx_f(t_data *img, t_vars *vars)
 	// 	i++;
 	// }
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
-	mlx_key_hook(vars->win, key_hook, &vars);
+	mlx_key_hook(vars->win, key_hook, vars);
+	mlx_hook(vars->win, 17, 0L, close_game, vars);
 	mlx_loop(vars->mlx);
+	(void)main;
 }
 
 void	initialize_mlx(t_data *img, t_vars *vars)
@@ -88,6 +100,6 @@ int	main(int argc, char **argv)
 	parsing(&main, argv);
 	initialize_mlx(&img, &vars);
 	draw_flat_map(&main, &img);
-	mlx_f(&img, &vars);
+	mlx_f(&img, &vars, &main);
 	return (0);
 }

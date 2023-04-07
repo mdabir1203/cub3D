@@ -6,12 +6,19 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:56:13 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/23 17:17:08 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:51:19 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ * @return true 	 -	when
+ * @return false 
+ */
 bool	map_fragment_found(char *buffer)
 {
 	int	i;
