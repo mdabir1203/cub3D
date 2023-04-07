@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 14:49:05 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:08:54 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "cub3d.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -59,14 +58,7 @@ int	key_hook(int keycode, t_hive *hive)
 
 void	mlx_f(t_hive *h)
 {
-	int	i;
-	int	img_width;
-	int	img_height;
-
-	img_height = 0;
-	img_width = 0;
 	//img->img = mlx_xpm_file_to_image(vars->mlx, D_NO, &img_width, &img_height);
-	i = 0;
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_key_hook(h->vars->win, key_hook, h);
 	mlx_hook(h->vars->win, 17, 0L, close_game, h->vars);

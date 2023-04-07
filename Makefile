@@ -6,7 +6,7 @@
 #    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/07 15:22:06 by rehernan         ###   ########.fr        #
+#    Updated: 2023/04/07 15:32:58 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,15 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-MLX_PATH = mlx
-
 all:$(NAME)
 
 UNAME := $(shell uname)
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+minilibx-linux/libmlx.a:
+	make -C minilibx-linux
+	cp MLX/libmlx.a
+	@echo "Making MLX..."
 
 ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
@@ -47,8 +49,8 @@ $(NAME): libftprintf/libftprintf.a $(OBJS)
 endif
 
 ifeq ($(UNAME), Linux)
-$(NAME): libftprintf/libftprintf.a $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) -L/usr/include/X11/extensions -lX11 -lXext -lft libftprintf.a -o $(NAME)
+$(NAME): libftprintf/libftprintf.a  minilibx-linux/libmlx.a $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) minilibx-linux/libmlx.a -L/usr/include/X11/extensions -lX11 -lXext libftprintf.a -o $(NAME)
 endif
 
 libftprintf/libftprintf.a:

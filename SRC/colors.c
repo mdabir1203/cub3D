@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:25:57 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 18:27:25 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:11:24 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ static bool	confirm_possible_color_val(char **val)
 void	take_care_of_color(char *buffer, t_main *m, char id)
 {
 	int		i;
-	int		tmp;
 	char	*val;
 	char	**c;
 
 	i = 0;
-	tmp = 0;
 	val = save_element(m, buffer);
 	c = ft_split(val, ',');
 	if (confirm_possible_color_val(c) == false)

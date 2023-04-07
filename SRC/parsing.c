@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:11:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/06 18:48:36 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:11:12 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static void	check_for_elements(char *buffer, t_main *main)
  */
 void	find_elements(t_main *main)
 {
-	int		i;
 	char	*buffer;
 
-	i = 0;
 	buffer = get_next_line(main->file_fd);
 	while (buffer != NULL)
 	{
@@ -66,13 +64,11 @@ static void	find_map(t_main *main, char **argv)
 {
 	int		len;
 	int		c;
-	bool	empty_found;
 	char	*buffer;
 
 	printf(YELL "MAP PARSING ----------------------------------\n" B);
 	len = 0;
 	c = 0;
-	empty_found = false;
 	buffer = get_next_line(main->file_fd);
 	while (buffer != NULL && check_for_map_start(buffer, main) == false)
 	{

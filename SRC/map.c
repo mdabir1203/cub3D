@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:29:41 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/06 19:05:54 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:11:51 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ static char	*save_map_line(char *buffer)
 void	save_map(t_main *main, char **argv, int len)
 {
 	int		i;
-	int		line_len;
 	char	*buffer;
 
 	i = 0;
-	line_len = 0;
 	close(main->file_fd);
 	open_the_file(main, argv);
 	buffer = get_next_line(main->file_fd);
