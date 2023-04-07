@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/07 12:09:30 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/04/07 15:22:06 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,19 @@ MLX_PATH = mlx
 
 all:$(NAME)
 
+UNAME := $(shell uname)
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
+ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
+endif
+
+ifeq ($(UNAME), Linux)
+$(NAME): libftprintf/libftprintf.a $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) -L/usr/include/X11/extensions -lX11 -lXext -lft libftprintf.a -o $(NAME)
+endif
 
 libftprintf/libftprintf.a:
 	make -C libftprintf
@@ -50,6 +58,7 @@ libftprintf/libftprintf.a:
 
 clean:
 	make -C libftprintf clean
+	rm libftprintf.a
 	rm -f $(OBJS)
 	@echo "cleaning..."
 

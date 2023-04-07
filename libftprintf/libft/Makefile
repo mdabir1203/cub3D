@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rehernan <rehernan@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/10 11:52:30 by rehernan          #+#    #+#              #
-#    Updated: 2022/03/24 20:34:58 by rehernan         ###   ########.fr        #
+#    Updated: 2023/04/07 15:21:24 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJ_FILES = ft_memset.o ft_memcmp.o ft_bzero.o ft_isascii.o \
 			ft_isdigit.o ft_isalnum.o ft_isprint.o ft_calloc.o \
 			ft_toupper.o ft_tolower.o ft_strrchr.o ft_memchr.o \
 			ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_strncmp.o \
-			ft_putnbr_fd.o ft_strnstr.o ft_atoi.o ft_substr.o \
+			ft_putnbr_fd.o ft_strnstr.o ft_atoi.o \
 			ft_strmapi.o ft_striteri.o ft_strtrim.o ft_itoa.o ft_split.o \
 			get_next_line_bonus.o get_next_line_utils_bonus.o
 
