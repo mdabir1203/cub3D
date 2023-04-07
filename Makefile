@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/06 20:01:36 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/04/07 12:09:30 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ all:$(NAME)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME): libftprintf/libftprintf.a $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) -Lmlx -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
 
 libftprintf/libftprintf.a:
 	make -C libftprintf

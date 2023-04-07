@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/06 20:19:08 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:05:39 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	close_game(t_vars *vars)
 	exit(0);
 }
 
-int	key_hook(int keycode, t_vars *vars)
+int	key_hook(int keycode, t_vars *vars, t_main *main)
 {
 	(void)vars;
+	(void)main;
 	// (void)img;
 	// (void)main;
 	if (keycode == 124)
@@ -40,6 +41,7 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == W_KEY)
 	{
 		printf("W key!\n");
+		mlx_clear_window(vars->mlx, vars->win);
 		//main->p_pos_y += 10;
 		//draw_player(img, main->p_pos_x, main->p_pos_y);
 	}
@@ -94,6 +96,7 @@ int	main(int argc, char **argv)
 	t_main	main;
 	t_data	img;
 	t_vars	vars;
+	//t_hive	
 
 	initialize_main(&main);
 	check_basic_errors(&main, argc, argv);
