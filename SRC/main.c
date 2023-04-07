@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 12:05:39 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:58:09 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ int	close_game(t_vars *vars)
 	exit(0);
 }
 
-int	key_hook(int keycode, t_vars *vars, t_main *main)
+int	key_hook(int keycode, t_vars *vars, t_hive *hive)
 {
 	(void)vars;
-	(void)main;
 	// (void)img;
 	// (void)main;
 	if (keycode == 124)
@@ -60,7 +59,7 @@ int	key_hook(int keycode, t_vars *vars, t_main *main)
 	return (0);
 }
 
-void	mlx_f(t_data *img, t_vars *vars, t_main *main)
+void	mlx_f(t_data *img, t_vars *vars, t_main *main, t_hive *hive)
 {
 	int	i;
 	int img_width;
@@ -91,18 +90,26 @@ void	initialize_mlx(t_data *img, t_vars *vars)
 	&img->line_length, &img->endian);
 }
 
+void	initialize_hive(t_hive *hive, t_main *main, t_data *data, t_vars *vars)
+{
+	hive->main = main;
+	hive->data = data;
+	hive->vars = vars;
+}
+
 int	main(int argc, char **argv)
 {
 	t_main	main;
-	t_data	img;
+	t_data	data;
 	t_vars	vars;
-	//t_hive	
+	t_hive	hive;	
 
 	initialize_main(&main);
+	initialize_hive(&hive, &main, &data, &vars);
 	check_basic_errors(&main, argc, argv);
 	parsing(&main, argv);
-	initialize_mlx(&img, &vars);
-	draw_flat_map(&main, &img);
-	mlx_f(&img, &vars, &main);
+	initialize_mlx(&data, &vars);
+	draw_flat_map(&main, &data);
+	mlx_f(&data, &vars, &main);
 	return (0);
 }

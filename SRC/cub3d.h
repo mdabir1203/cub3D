@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 12:05:02 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:56:10 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_data {
 typedef struct s_main
 {
 	int		file_fd;
-
 	char	p_dir;
 	char	p_pos_x;
 	char	p_pos_y;
@@ -55,12 +54,12 @@ typedef struct s_main
 	int		roof;
 }				t_main;
 
-// typedef struct s_hive
-// {
-// 	t_main	*main;
-// 	t_data	*data;
-// 	t_vars	*vars;
-// }				t_hive;
+typedef struct s_hive
+{
+	t_main	*main;
+	t_data	*data;
+	t_vars	*vars;
+}				t_hive;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
