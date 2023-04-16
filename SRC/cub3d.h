@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:29:43 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:36:05 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,13 +166,24 @@ void	check_player_direction(t_main *main);
 # define CYAN "\033[0;36m"
 
 //Moving
-# define LEFT_KEY	124
-# define RIGHT_KEY	123
-# define W_KEY		13
-# define S_KEY		1
-# define D_KEY		2
-# define A_KEY		0
-# define ESC_KEY	53
+
+# ifdef __APPLE__
+#  define LEFT_KEY	124
+#  define RIGHT_KEY	123
+#  define W_KEY		13
+#  define S_KEY		1
+#  define D_KEY		2
+#  define A_KEY		0
+#  define ESC_KEY	53
+# elif __linux__
+#  define LEFT_KEY 	97
+#  define RIGHT_KEY 100
+#  define W_KEY		119
+#  define S_KEY		115
+#  define D_KEY		100
+#  define A_KEY		97
+#  define ESC_KEY	65307
+# endif
 
 # define T_HEIGTH	30
 # define T_WIDTH	30
