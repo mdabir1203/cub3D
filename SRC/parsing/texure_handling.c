@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texure_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:30:45 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 17:09:09 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:22:01 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static char	*prepare_element_path(char *str)
 {

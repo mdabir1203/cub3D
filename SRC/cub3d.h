@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 16:48:41 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:29:43 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 # include "../libftprintf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 
@@ -43,8 +44,8 @@ typedef struct s_main
 	char	p_dir;
 	char	p_pos_x;
 	char	p_pos_y;
-	double	p_x;
-	double	p_y;
+	int		p_x;
+	int		p_y;
 	char	*north_t;
 	char	*south_t;
 	char	*west_t;
@@ -60,21 +61,27 @@ typedef struct s_hive
 	t_main	*main;
 	t_data	*data;
 	t_vars	*vars;
+	int		line[4];
+	int		decision_v;
+	int		direction;
+	int		delta_x;
+	int		delta_y;
+	int		p_c_x;
+	int		p_c_y;
+	int		angle;
+	int		r[8];
+	int		p_c[8];
+	int		p_m[8];
+	int		move;
 }				t_hive;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
-void	draw_flat_map(t_main *main, t_data *data);
-void	draw_player(t_data *img, int x_p, int y_p);
+//	============>	parsing	==========================
 
 //checking_map.c
 int		check_right(t_main *main, int x, int y, int x_r);
 int		check_middle(t_main *main, int x, int y);
 int		check_left(t_main *main, int x, int y, int x_l);
 void	check_spaces(t_main *main, int x, int y);
-
-//colors.c
-void	take_care_of_color(char *buffer, t_main *m, char id);
 
 //debugging.c
 void	check_map(t_main *main);
@@ -90,12 +97,6 @@ void	parsing_cleaning(t_main *main, char *arr, int err);
 void	ft_exiterr(int err);
 void	check_basic_errors(t_main *main, int argc, char **argv);
 
-//free.c
-void	clear_the_main_struct(t_main *main);
-
-//init.c
-void	initialize_main(t_main *main);
-
 //map.c
 void	save_map(t_main *main, char **argv, int len);
 bool	check_for_map_start(char *buffer, t_main *main);
@@ -105,9 +106,6 @@ int		check_map_fragments(t_main *main, char *b, int *c);
 //parsing.c
 void	parsing(t_main *main, char **argv);
 
-//player.c
-void	check_player_direction(t_main *main);
-
 //texure_handling.c
 char	*save_element(t_main *main, char *buffer);
 void	take_care_of_texure(char *buffer, t_main *main, char name);
@@ -115,6 +113,32 @@ void	take_care_of_texure(char *buffer, t_main *main, char name);
 //utils.c
 bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
+void	draw_line(t_hive *h, int color);
+
+//	============>	drawing	==========================
+
+void	player_rotation(t_hive *h, char indentifier);
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+void	draw_flat_map(t_main *main, t_data *data);
+void	draw_player(t_hive *h, t_data *img);
+
+//colors.c
+void	take_care_of_color(char *buffer, t_main *m, char id);
+
+void	dda_line(t_hive *hive);
+
+//free.c
+void	clear_the_main_struct(t_main *main);
+
+//init.c
+void	initialize_main(t_main *main);
+void	initialize_hive(t_hive *hive);
+void	initialize_mlx(t_data *img, t_vars *vars);
+
+//player.c
+void	check_player_direction(t_main *main);
 
 //ERROR Codes
 # define NOT_ENOUGH_ARGS 		1
@@ -149,7 +173,6 @@ void	open_the_file(t_main *main, char **argv);
 # define D_KEY		2
 # define A_KEY		0
 # define ESC_KEY	53
-
 
 # define T_HEIGTH	30
 # define T_WIDTH	30

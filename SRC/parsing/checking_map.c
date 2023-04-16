@@ -6,11 +6,11 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:24:37 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/06 18:52:27 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:21:24 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /**
  * FUNCTION: (check_right) checks the area on the right of the space.

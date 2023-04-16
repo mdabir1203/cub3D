@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:11:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 16:57:14 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:21:53 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /**
  * FUNCTION: (check_for_elements) just matches the the Texure name with the
@@ -135,9 +135,13 @@ void	parsing(t_main *main, char **argv)
 	find_map(main, argv);
 	check_map(main);
 	check_player_direction(main);
+	main->p_x = main->p_pos_x;
+	main->p_y = main->p_pos_y;
 	printf("check players direction:	[%c]\n", main->p_dir);
 	printf("check players position x:	[%d]\n", main->p_pos_x);
 	printf("check players position y:	[%d]\n", main->p_pos_y);
+	printf("check_starting pos of player x: [%d]\n", main->p_x);
+	printf("check starting pos of player y: [%d]\n", main->p_y);
 	printf("height of the map:			[%d]\n", main->height);
 	check_for_open_walls(main);
 	check_map(main);

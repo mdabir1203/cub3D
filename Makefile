@@ -3,35 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
+#    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/07 15:59:49 by rehernan         ###   ########.fr        #
+#    Updated: 2023/04/16 17:21:14 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d 
 
-SRCS =	./SRC/main.c 			\
-		./SRC/errors.c 			\
-		./SRC/parsing.c			\
-		./SRC/init.c			\
-		./SRC/errors_utils.c	\
-		./SRC/free.c			\
-		./SRC/texure_handling.c \
-		./SRC/utils.c			\
-		./SRC/colors.c			\
-		./SRC/map.c				\
-		./SRC/checking_map.c 	\
-		./SRC/player.c 			\
-		./SRC/debugging.c 		\
-		./SRC/drawing2d_map.c 	\
+SRCS =	./SRC/main.c 					\
+		./SRC/parsing/map.c				\
+		./SRC/parsing/errors.c 			\
+		./SRC/parsing/parsing.c			\
+		./SRC/parsing/debugging.c 		\
+		./SRC/parsing/checking_map.c 	\
+		./SRC/parsing/errors_utils.c	\
+		./SRC/parsing/texure_handling.c \
+		./SRC/parsing/utils.c			\
+		./SRC/init.c					\
+		./SRC/free.c					\
+		./SRC/colors.c					\
+		./SRC/player.c 					\
+		./SRC/drawing2d_map.c 			\
+		./SRC/dda.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
 all: submodule $(NAME)
 

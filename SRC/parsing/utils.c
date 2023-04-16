@@ -6,11 +6,11 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:28:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/03/22 18:29:44 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:22:06 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 bool	match(char *searched, char *str)
 {

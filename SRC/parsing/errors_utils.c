@@ -6,11 +6,11 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:56:13 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/06 18:51:19 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:21:40 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /**
  * @brief 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/07 16:42:07 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:12:21 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (x < 1920 && y < 1020 && x > 0 && y > 0)
+	{
+		dst = data->addr + (y * data->line_length + x * \
+												(data->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 int	close_game(t_hive *hive)
 {
-	mlx_destroy_image(hive->vars->mlx, hive->data->img);
+	//mlx_destroy_image(hive->vars->mlx, hive->data->img);
 	mlx_destroy_window(hive->vars->mlx, hive->vars->win);
 	clear_the_main_struct(hive->main);
 	// free(hive->data);
@@ -33,80 +37,108 @@ int	close_game(t_hive *hive)
 	exit(0);
 }
 
+void	move_player(t_hive *h, int indentifier)
+{
+	if (indentifier == W_KEY)
+	{
+		h->p_c_x = h->p_m[0];
+		h->p_c_y = h->p_m[1];
+	}
+	if (indentifier == S_KEY)
+	{
+		h->p_c_x = h->p_m[6];
+		h->p_c_y = h->p_m[7];
+	}
+	if (indentifier == A_KEY)
+	{
+		h->p_c_x = h->p_m[4];
+		h->p_c_y = h->p_m[5];
+	}
+	if (indentifier == D_KEY)
+	{
+		h->p_c_x = h->p_m[2];
+		h->p_c_y = h->p_m[3];
+	}
+}
+
 int	key_hook(int keycode, t_hive *hive)
 {
-	if (keycode == 124)
-		printf("Left arrow key!\n");
-	if (keycode == 123)
-		printf("Right arrow key!\n");
-	if (keycode == W_KEY)
-	{
-		printf("W key!\n");
-		mlx_clear_window(hive->vars->mlx, hive->vars->win);
-		check_map(hive->main);
-		//main->p_pos_y += 10;
-		//draw_player(img, main->p_pos_x, main->p_pos_y);
-	}
-	if (keycode == 1)
-		printf("S key!\n");
-	if (keycode == 2)
-		printf("D key!\n");
-	if (keycode == 0)
-		printf("A key!\n");
-	if (keycode == 53)
-	{
-		printf("ESC key!\n");
+	if (keycode == ESC_KEY)
 		close_game(hive);
-	}
-	printf("Hello from key_hook! %d\n", keycode);
+	if (keycode == LEFT_KEY)
+		hive->angle += 5;
+	else if (keycode == RIGHT_KEY)
+		hive->angle -= 5;
+	else
+		move_player(hive, keycode);
 	return (0);
 }
 
-void	mlx_f(t_hive *h)
+void	player_rotation(t_hive *h, char indentifier)
 {
-	//img->img = mlx_xpm_file_to_image(vars->mlx, D_NO, &img_width, &img_height);
+	double	s;
+	double	c;	
+	int		tmp_x;
+
+	s = sin(h->angle * M_PI / 180);
+	c = cos(h->angle * M_PI / 180);
+	if (indentifier == 'r')
+	{
+		tmp_x = h->r[0];
+		h->r[0] = ((h->r[0] - h->p_c_x) * c - (h->r[1] - h->p_c_y) * s) + h->p_c_x;
+		h->r[1] = ((tmp_x - h->p_c_x) * s + (h->r[1] - h->p_c_y) * c) + h->p_c_y;
+		tmp_x = h->r[2];
+		h->r[2] = ((h->r[2] - h->p_c_x) * c - (h->r[3] - h->p_c_y) * s) + h->p_c_x;
+		h->r[3] = ((tmp_x - h->p_c_x) * s + (h->r[3] - h->p_c_y) * c) + h->p_c_y;
+		tmp_x = h->r[4];
+		h->r[4] = ((h->r[4] - h->p_c_x) * c - (h->r[5] - h->p_c_y) * s) + h->p_c_x;
+		h->r[5] = ((tmp_x - h->p_c_x) * s + (h->r[5] - h->p_c_y) * c) + h->p_c_y;
+		tmp_x = h->r[6];
+		h->r[6] = ((h->r[6] - h->p_c_x) * c - (h->r[7] - h->p_c_y) * s) + h->p_c_x;
+		h->r[7] = ((tmp_x - h->p_c_x) * s + (h->r[7] - h->p_c_y) * c) + h->p_c_y;
+		return ;
+	}
+	tmp_x = h->p_c[0];
+	h->p_c[0] = ((h->p_c[0] - h->p_c_x) * c - (h->p_c[1] - h->p_c_y) * s) + h->p_c_x;
+	h->p_c[1] = ((tmp_x - h->p_c_x) * s + (h->p_c[1] - h->p_c_y) * c) + h->p_c_y;
+	tmp_x = h->p_c[2];
+	h->p_c[2] = ((h->p_c[2] - h->p_c_x) * c - (h->p_c[3] - h->p_c_y) * s) + h->p_c_x;
+	h->p_c[3] = ((tmp_x - h->p_c_x) * s + (h->p_c[3] - h->p_c_y) * c) + h->p_c_y;
+	tmp_x = h->p_c[4];
+	h->p_c[4] = ((h->p_c[4] - h->p_c_x) * c - (h->p_c[5] - h->p_c_y) * s) + h->p_c_x;
+	h->p_c[5] = ((tmp_x - h->p_c_x) * s + (h->p_c[5] - h->p_c_y) * c) + h->p_c_y;
+	tmp_x = h->p_c[6];
+	h->p_c[6] = ((h->p_c[6] - h->p_c_x) * c - (h->p_c[7] - h->p_c_y) * s) + h->p_c_x;
+	h->p_c[7] = ((tmp_x - h->p_c_x) * s + (h->p_c[7] - h->p_c_y) * c) + h->p_c_y;
+}
+
+int	render(t_hive *h)
+{
+	h->data->img = mlx_new_image(h->vars->mlx, 1920, 1080);
+	h->data->addr = mlx_get_data_addr(h->data->img, &h->data->bits_per_pixel, \
+	&h->data->line_length, &h->data->endian);
+	draw_flat_map(h->main, h->data);
+	draw_player(h, h->data);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
-	mlx_key_hook(h->vars->win, key_hook, h);
-	mlx_hook(h->vars->win, 17, 0L, close_game, h);
-	mlx_loop(h->vars->mlx);
-}
-
-void	initialize_mlx(t_data *img, t_vars *vars)
-{
-	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, 800, 600, "Hello world!");
-	img->img = mlx_new_image(vars->mlx, 800, 600);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
-	&img->line_length, &img->endian);
-}
-
-// void	initialize_hive(t_hive *hive, t_main *main, t_data *data, t_vars *vars)
-// {
-// 	hive->main = main;
-// 	hive->data = data;
-// 	hive->vars = vars;
-// }
-void	initialize_hive(t_hive *hive)
-{
-	hive->main = ft_calloc(sizeof(t_main), 1);
-	hive->data = ft_calloc(sizeof(t_data), 1);
-	hive->vars = ft_calloc(sizeof(t_vars), 1);
+	mlx_destroy_image(h->vars->mlx, h->data->img);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	// t_main	main;
-	// t_data	data;
-	// t_vars	vars;
-	t_hive	*hive = ft_calloc(sizeof(t_hive), 1);
+	t_hive	*hive;
 
-	// initialize_hive(&hive, &main, &data, &vars);
+	hive = ft_calloc(sizeof(t_hive), 1);
 	initialize_hive(hive);
 	initialize_main(hive->main);
 	check_basic_errors(hive->main, argc, argv);
 	parsing(hive->main, argv);
 	initialize_mlx(hive->data, hive->vars);
-	draw_flat_map(hive->main, hive->data);
-	mlx_f(hive);
+	hive->p_c_x = T_WIDTH + (hive->main->p_x * T_WIDTH) + (T_WIDTH / 2);
+	hive->p_c_y = T_HEIGTH + (hive->main->p_y * T_HEIGTH) + (T_HEIGTH / 2);
+	mlx_hook(hive->vars->win, 2, 0, &key_hook, hive);
+	mlx_hook(hive->vars->win, 17, 0L, close_game, hive);
+	mlx_loop_hook(hive->vars->mlx, &render, hive);
+	mlx_loop(hive->vars->mlx);
 	return (0);
 }
