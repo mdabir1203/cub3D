@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:36:05 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:11:03 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,47 @@ typedef struct s_main
 	int		roof;
 }				t_main;
 
+typedef struct s_brezenham
+{
+	int		decision_v;
+	int		direction;
+	int		delta_x;
+	int		delta_y;
+}				t_brez;
+
 typedef struct s_hive
 {
 	t_main	*main;
 	t_data	*data;
 	t_vars	*vars;
+	t_brez	*b;
 	int		line[4];
-	int		decision_v;
-	int		direction;
-	int		delta_x;
-	int		delta_y;
 	int		p_c_x;
 	int		p_c_y;
+	int		c_tile_pos_x;
+	int		c_tile_pos_y;
 	int		angle;
 	int		r[8];
 	int		p_c[8];
 	int		p_m[8];
+	int		p_offset;
 	int		move;
+	double	f_int_x;
+	double	chosenx;
+	double	choseny;
+	double	f_int_y;
+	double	c_horizontal;
+	double	c_vertical;
+	double	c_hor_x;
+	double	c_hor_y;
+	double	c_ver_x;
+	double	c_ver_y;
+	double	horizontal_x_scaling;
+	int		horizontal_y;
+	int		vertical_x;
+	double	vertical_y_scaling;
+	int		quadrant;
+	int		wall_side;
 }				t_hive;
 
 //	============>	parsing	==========================
@@ -117,7 +141,9 @@ void	draw_line(t_hive *h, int color);
 
 //	============>	drawing	==========================
 
-void	player_rotation(t_hive *h, char indentifier);
+void	dda(t_hive *h);
+
+void	player_rotation(t_hive *h, char indentifier, int offset);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
@@ -185,8 +211,8 @@ void	check_player_direction(t_main *main);
 #  define ESC_KEY	65307
 # endif
 
-# define T_HEIGTH	30
-# define T_WIDTH	30
+# define T_HEIGTH	32
+# define T_WIDTH	32
 
 //Things
 # define D_NO "./default_north.xpm"

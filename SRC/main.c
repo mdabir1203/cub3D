@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:12:21 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/22 17:28:35 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ int	key_hook(int keycode, t_hive *hive)
 	return (0);
 }
 
-void	player_rotation(t_hive *h, char indentifier)
+void	player_rotation(t_hive *h, char indentifier, int offset)
 {
 	double	s;
 	double	c;	
 	int		tmp_x;
 
-	s = sin(h->angle * M_PI / 180);
-	c = cos(h->angle * M_PI / 180);
+	s = sin((h->angle + offset) * M_PI / 180);
+	c = cos((h->angle + offset) * M_PI / 180);
 	if (indentifier == 'r')
 	{
 		tmp_x = h->r[0];
@@ -119,6 +119,7 @@ int	render(t_hive *h)
 	&h->data->line_length, &h->data->endian);
 	draw_flat_map(h->main, h->data);
 	draw_player(h, h->data);
+	dda(h);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_destroy_image(h->vars->mlx, h->data->img);
 	return (0);
@@ -136,7 +137,9 @@ int	main(int argc, char **argv)
 	initialize_mlx(hive->data, hive->vars);
 	hive->p_c_x = T_WIDTH + (hive->main->p_x * T_WIDTH) + (T_WIDTH / 2);
 	hive->p_c_y = T_HEIGTH + (hive->main->p_y * T_HEIGTH) + (T_HEIGTH / 2);
-	mlx_hook(hive->vars->win, 2, 0, &key_hook, hive);
+	hive->c_tile_pos_x = hive->main->p_x;
+	hive->c_tile_pos_y = hive->main->p_y;
+	mlx_hook(hive->vars->win, 2, 1L<<0, &key_hook, hive);
 	mlx_hook(hive->vars->win, 17, 0L, close_game, hive);
 	mlx_loop_hook(hive->vars->mlx, &render, hive);
 	mlx_loop(hive->vars->mlx);

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:12:29 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:20:40 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,16 @@ void	initialize_hive(t_hive *hive)
 	hive->main = ft_calloc(sizeof(t_main), 1);
 	hive->data = ft_calloc(sizeof(t_data), 1);
 	hive->vars = ft_calloc(sizeof(t_vars), 1);
+	hive->b = ft_calloc(sizeof(t_brez), 1);
+	hive->b->decision_v = 0;
+	hive->b->delta_x = 0;
+	hive->b->delta_y = 0;
+	hive->b->direction = 0;
 	while (i < 4)
 		hive->line[i++] = 0;
 	hive->angle = 0;
 	hive->move = 15;
+	hive->p_offset = 0;
 	i = 0;
 	while (i < 8)
 	{

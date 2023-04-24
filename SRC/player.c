@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:30:40 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:17:03 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/17 11:12:35 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ void	initialize_rectangle(t_hive *h)
 void	draw_p_dir_points(t_hive *h, int i, int x)
 {
 	initialize_rectangle(h);
-	player_rotation(h, 'r');
-	player_rotation(h, 'c');
+	player_rotation(h, 'r', h->p_offset);
+	player_rotation(h, 'c', h->p_offset);
 	while (i < 4)
 		h->line[i++] = h->r[x++];
 	draw_line(h, 3139839);
 	h->p_m[0] = (h->p_c[0] + h->p_c[2]) / 2;
 	h->p_m[1] = (h->p_c[1] + h->p_c[3]) / 2;
-	my_mlx_pixel_put(h->data, h->p_m[0], h->p_m[1], 0xFFFF00);
+	my_mlx_pixel_put(h->data, h->p_m[0], h->p_m[1], 0x00FF00);
 	h->p_m[2] = (h->p_c[2] + h->p_c[6]) / 2;
 	h->p_m[3] = (h->p_c[3] + h->p_c[7]) / 2;
 	my_mlx_pixel_put(h->data, h->p_m[2], h->p_m[3], 0xFFFF00);
@@ -92,18 +92,29 @@ void	draw_p_dir_points(t_hive *h, int i, int x)
 	my_mlx_pixel_put(h->data, h->p_c[6], h->p_c[7], 0xFFFF00);
 }
 
+void	choose_dir(t_hive *h)
+{
+	if (h->main->p_dir == 'E')
+		h->p_offset = 90;
+	else if (h->main->p_dir == 'S')
+		h->p_offset = 180;
+	else if (h->main->p_dir == 'N')
+		h->p_offset = 270;
+}
+
 void	draw_rectangle(t_hive *h)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
+	choose_dir(h);
 	while (i <= 10)
 	{
 		h->r[0] = h->p_c_x - (5);
 		h->r[2] = h->p_c_x + (5);
 		h->r[1] = h->p_c_y - (5) + i;
 		h->r[3] = h->p_c_y - (5) + i;
-		player_rotation(h, 'r');
+		player_rotation(h, 'r', h->p_offset);
 		h->line[0] = h->r[0];
 		h->line[1] = h->r[1];
 		h->line[2] = h->r[2];
