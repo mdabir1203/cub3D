@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/18 12:49:19 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/04/24 19:30:30 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,13 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 
 all: submodule $(NAME)
 
 UNAME := $(shell uname)
 %.o: %.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -lm -c $< -o $@
 minilibx-linux/libmlx.a:
 	make -C minilibx-linux
 	cp MLX/libmlx.a
@@ -50,12 +50,12 @@ submodule:
 
 ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) -lmlx  -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
 endif
 
 ifeq ($(UNAME), Linux)
-$(NAME): libftprintf/libftprintf.a  minilibx-linux/libmlx.a $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) minilibx-linux/libmlx.a -L/usr/include/X11/extensions -lX11 -lXext libftprintf.a -o $(NAME)
+$(NAME): libftprintf/libftprintf.a minilibx-linux/libmlx.a $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) minilibx-linux/libmlx.a -L/usr/include/X11/extensions -lX11 -lXext -lm libftprintf.a -o $(NAME)
 endif
 
 libftprintf/libftprintf.a:
