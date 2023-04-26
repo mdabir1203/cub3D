@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/24 19:30:30 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/04/26 13:48:09 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ all: submodule $(NAME)
 
 UNAME := $(shell uname)
 %.o: %.c
-	$(CC) $(CFLAGS) -Imlx -lm -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 minilibx-linux/libmlx.a:
 	make -C minilibx-linux
 	cp MLX/libmlx.a

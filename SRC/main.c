@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/22 17:28:35 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:25:16 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,35 @@ void	player_rotation(t_hive *h, char indentifier, int offset)
 	h->p_c[7] = ((tmp_x - h->p_c_x) * s + (h->p_c[7] - h->p_c_y) * c) + h->p_c_y;
 }
 
+void	draw_2d_rays(t_hive *h)
+{
+	int i = 0;
+	dda(h);
+	while (i > -30)
+	{
+		h->angle -= 1;
+		dda(h);
+		i--;
+	}
+	h->angle += 30;
+	i = 0;
+	while (i < 30)
+	{
+		h->angle += 1;
+		dda(h);
+		i++;
+	}
+	h->angle -= 30;
+}
+
 int	render(t_hive *h)
 {
 	h->data->img = mlx_new_image(h->vars->mlx, 1920, 1080);
 	h->data->addr = mlx_get_data_addr(h->data->img, &h->data->bits_per_pixel, \
 	&h->data->line_length, &h->data->endian);
 	draw_flat_map(h->main, h->data);
+	draw_2d_rays(h);
 	draw_player(h, h->data);
-	dda(h);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_destroy_image(h->vars->mlx, h->data->img);
 	return (0);

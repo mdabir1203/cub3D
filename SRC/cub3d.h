@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/24 15:11:03 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:15:59 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_hive
 	double	vertical_y_scaling;
 	int		quadrant;
 	int		wall_side;
+	int		real_angle;
+	double	shortest_dist_to_wall;
 }				t_hive;
 
 //	============>	parsing	==========================
