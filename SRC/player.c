@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:30:40 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/17 11:12:35 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:17:45 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	choose_dir(t_hive *h)
 		h->p_offset = 90;
 	else if (h->main->p_dir == 'S')
 		h->p_offset = 180;
-	else if (h->main->p_dir == 'N')
+	else if (h->main->p_dir == 'W')
 		h->p_offset = 270;
 }
 

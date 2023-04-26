@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/26 20:46:49 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:19:27 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,15 @@ void	player_rotation(t_hive *h, char indentifier, int offset)
 void	draw_2d_rays(t_hive *h)
 {
 	int i = -30;
+	
 	h->angle = h->angle - 30;
 	while (i < 0)
 	{
 		h->angle++;
 		dda(h, 0xFFFF00);
 		i++;
-		printf("i: %d\n", i);
 	}
-	printf("h->angle: %d\n", h->angle);
-	dda(h, 0xFF0000);
+	dda(h, 0x00FF00);
 	while (i < 30)
 	{
 		h->angle++;

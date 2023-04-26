@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:32:54 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/26 20:34:19 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:18:59 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	first_horizontal(t_hive *h, int s_t_posx, int s_t_posy)
 		offsety = s_t_posy + T_HEIGTH - h->p_c_y;
 	else
 		offsety = h->p_c_y - s_t_posy;
-	if (abs(h->angle % 180) == 90)
+	if (abs((h->angle + h->p_offset) % 180) == 90)
 		a = 10000000;
 	else
 		a  = fabs(offsety / tan(h->real_angle * M_PI / 180));
@@ -60,7 +60,7 @@ void	first_vertical(t_hive *h, int s_t_posx, int s_t_posy)
 		a  = s_t_posx + T_WIDTH - h->p_c_x;
 	else
 		a = h->p_c_x - s_t_posx;
-	if (abs(h->angle % 180) == 0)
+	if (abs((h->angle + h->p_offset) % 180) == 0)
 		b = 10000000;
 	else
 		b = fabs(a * tan(h->real_angle * M_PI / 180));
@@ -127,15 +127,15 @@ int	check_vertical_wall(t_hive *h)
 
 void	decide_quodrant(t_hive *h)
 {
-	if (h->angle < 0)
+	if (h->angle + h->p_offset < 0)
 	{
-		if (h->angle % 360 >= -90)
+		if ((h->angle + h->p_offset) % 360 >= -90)
 			h->quadrant = 2;
 		else
 		{
-			if (h->angle % 360 <= -90 && h->angle % 360 >= -180)
+			if ((h->angle + h->p_offset) % 360 <= -90 && (h->angle + h->p_offset) % 360 >= -180)
 				h->quadrant = 3;
-			else if (h->angle % 360 < -180 && h->angle % 360 >= -270)
+			else if ((h->angle + h->p_offset) % 360 < -180 && (h->angle + h->p_offset) % 360 >= -270)
 				h->quadrant = 4;
 			else
 				h->quadrant = 1;
@@ -143,13 +143,13 @@ void	decide_quodrant(t_hive *h)
 	}
 	else
 	{
-		if (h->angle % 360 <= 90)
+		if ((h->angle + h->p_offset) % 360 <= 90)
 			h->quadrant = 1;
 		else
 		{
-			if (h->angle % 360 > 90 && h->angle % 360 <= 180)
+			if ((h->angle + h->p_offset) % 360 > 90 && (h->angle + h->p_offset) % 360 <= 180)
 				h->quadrant = 4;
-			else if (h->angle % 360 > 180 && h->angle % 360 <= 270)
+			else if ((h->angle + h->p_offset) % 360 > 180 && (h->angle + h->p_offset) % 360 <= 270)
 				h->quadrant = 3;
 			else
 				h->quadrant = 2;
@@ -159,7 +159,7 @@ void	decide_quodrant(t_hive *h)
 
 void	count_horizontal_scaling(t_hive *h)
 {
-	if (abs(h->angle % 180) == 90)
+	if (abs((h->angle + h->p_offset) % 180) == 90)
 		h->horizontal_x_scaling = 10000000;
 	else
 		h->horizontal_x_scaling  =  fabs(T_HEIGTH / tan(h->real_angle * M_PI / 180));
@@ -168,7 +168,7 @@ void	count_horizontal_scaling(t_hive *h)
 
 void	count_vertical_scaling(t_hive *h)
 {
-	if (abs(h->angle % 180) == 0)
+	if (abs((h->angle + h->p_offset) % 180) == 0)
 		h->vertical_y_scaling = 10000000;
 	else
 		h->vertical_y_scaling = fabs(tan(h->real_angle * M_PI / 180) * T_WIDTH);
@@ -184,9 +184,9 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 	smallest_magnitude = 0;
 	magnitude_horizontal_v = sqrt(fabs(h->c_hor_x * h->c_hor_x - h->p_c_x * h->p_c_x) + fabs(h->c_hor_y * h->c_hor_y - h->p_c_y * h->p_c_y));
 	magnitude_vertical_v = sqrt(fabs(h->c_ver_x * h->c_ver_x - h->p_c_x * h->p_c_x) + fabs(h->c_ver_y * h->c_ver_y - h->p_c_y * h->p_c_y));
-	if (abs(h->angle % 180) == 90)
+	if (abs((h->angle + h->p_offset) % 180) == 90)
 		magnitude_horizontal_v = magnitude_vertical_v + 10;
-	if (abs(h->angle % 180) == 0)
+	if (abs((h->angle + h->p_offset) % 180) == 0)
 		magnitude_vertical_v = magnitude_horizontal_v + 10;
 	if (ver_wall == 2)
 		magnitude_vertical_v = magnitude_horizontal_v + 10;
@@ -219,7 +219,7 @@ void	dda(t_hive *h, int color)
 
 	vertical_wall = 0;
 	horizontal_wall = 0;
-	h->real_angle = abs(90 - (h->angle % 180));
+	h->real_angle = abs(90 - ((h->angle + h->p_offset) % 180));
 	decide_quodrant(h);
 	h->c_tile_pos_x = (h->p_c_x - T_WIDTH) / T_WIDTH;
 	h->c_tile_pos_y = (h->p_c_y - T_WIDTH) / T_WIDTH;
@@ -234,7 +234,7 @@ void	dda(t_hive *h, int color)
 	int	step = 1;
 	while (horizontal_wall == 0)
 	{
-		if (abs(h->angle % 180) == 90)
+		if (abs((h->angle + h->p_offset) % 180) == 90)
 			break;
 		rest_horizontal(h, s_t_posy, step);
 		horizontal_wall = check_horizontal_wall(h);
@@ -245,7 +245,7 @@ void	dda(t_hive *h, int color)
 	step = 1;
 	while (vertical_wall == 0)
 	{
-		if (abs(h->angle % 180) == 0)
+		if (abs((h->angle + h->p_offset) % 180) == 0)
 			break;
 		rest_vertical(h, s_t_posx, step);
 		vertical_wall = check_vertical_wall(h);
@@ -254,10 +254,5 @@ void	dda(t_hive *h, int color)
 		step++;
 	}
 	if (vertical_wall != 0 && horizontal_wall != 0)
-	{
-		printf("I have found both walls\n");
 		h->shortest_dist_to_wall = calculate_distances_draw(h, vertical_wall, horizontal_wall, color);
-	}
-	printf("################-------\n");
-	
 }
