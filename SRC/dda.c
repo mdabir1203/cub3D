@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:32:54 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/26 15:24:16 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:34:19 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void	count_vertical_scaling(t_hive *h)
 	h->vertical_x = T_WIDTH;
 }
 
-double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall)
+double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color)
 {
 	double	smallest_magnitude;
 	double	magnitude_horizontal_v;
@@ -208,11 +208,11 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall)
 		h->line[3] = h->c_ver_y;
 		smallest_magnitude = magnitude_vertical_v;
 	}
-	draw_line(h, 0xFFFF00);
+	draw_line(h, color);
 	return (smallest_magnitude);
 }
 
-void	dda(t_hive *h)
+void	dda(t_hive *h, int color)
 {
 	int		vertical_wall;
 	int		horizontal_wall;
@@ -256,7 +256,7 @@ void	dda(t_hive *h)
 	if (vertical_wall != 0 && horizontal_wall != 0)
 	{
 		printf("I have found both walls\n");
-		h->shortest_dist_to_wall = calculate_distances_draw(h, vertical_wall, horizontal_wall);
+		h->shortest_dist_to_wall = calculate_distances_draw(h, vertical_wall, horizontal_wall, color);
 	}
 	printf("################-------\n");
 	

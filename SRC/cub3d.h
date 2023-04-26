@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/26 15:15:59 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:32:54 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	draw_line(t_hive *h, int color);
 
 //	============>	drawing	==========================
 
-void	dda(t_hive *h);
+void	dda(t_hive *h, int color);
 
 void	player_rotation(t_hive *h, char indentifier, int offset);
 
