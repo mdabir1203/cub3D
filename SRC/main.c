@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/26 21:19:27 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:07:00 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 1920 && y < 1020 && x > 0 && y > 0)
+	if (x < S_WIDTH && y < S_HEIGHT && x > 0 && y > 0)
 	{
 		dst = data->addr + (y * data->line_length + x * \
 												(data->bits_per_pixel / 8));
@@ -135,12 +135,19 @@ void	draw_2d_rays(t_hive *h)
 
 int	render(t_hive *h)
 {
-	h->data->img = mlx_new_image(h->vars->mlx, 1920, 1080);
+	int x;
+	int y;
+	x = 0;
+	y = 0;
+	h->data->img = mlx_new_image(h->vars->mlx, S_WIDTH, S_HEIGHT);
 	h->data->addr = mlx_get_data_addr(h->data->img, &h->data->bits_per_pixel, \
 	&h->data->line_length, &h->data->endian);
 	draw_flat_map(h->main, h->data);
 	draw_2d_rays(h);
 	draw_player(h, h->data);
+	draw_3d(h);
+	while (x++ < S_WIDTH || y++ < S_HEIGHT)
+		my_mlx_pixel_put(h->data, x, y, 178024024);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_destroy_image(h->vars->mlx, h->data->img);
 	return (0);
@@ -157,7 +164,7 @@ int	main(int argc, char **argv)
 	parsing(hive->main, argv);
 	initialize_mlx(hive->data, hive->vars);
 	hive->p_c_x = T_WIDTH + (hive->main->p_x * T_WIDTH) + (T_WIDTH / 2);
-	hive->p_c_y = T_HEIGTH + (hive->main->p_y * T_HEIGTH) + (T_HEIGTH / 2);
+	hive->p_c_y = T_HEIGHT + (hive->main->p_y * T_HEIGHT) + (T_HEIGHT / 2);
 	hive->c_tile_pos_x = hive->main->p_x;
 	hive->c_tile_pos_y = hive->main->p_y;
 	mlx_hook(hive->vars->win, 2, 1L<<0, &key_hook, hive);
