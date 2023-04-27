@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/18 17:20:40 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/27 10:13:00 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	initialize_hive(t_hive *hive)
 void	initialize_mlx(t_data *img, t_vars *vars)
 {
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, 1920, 1080, "Hello world!");
-	img->img = mlx_new_image(vars->mlx, 1920, 1080);
+	vars->win = mlx_new_window(vars->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
+	img->img = mlx_new_image(vars->mlx, S_WIDTH, S_HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
 	&img->line_length, &img->endian);
 }

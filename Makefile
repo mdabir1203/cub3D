@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/04/26 13:48:09 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/04/26 18:58:52 by rehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS =	./SRC/main.c 					\
 		./SRC/player.c 					\
 		./SRC/drawing2d_map.c 			\
 		./SRC/brezenham.c				\
-		./SRC/dda.c
+		./SRC/dda.c						\
+		./SRC/draw3d.c
 
 OBJS = $(SRCS:.c=.o)
 

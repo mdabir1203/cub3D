@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing2d_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:12:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:16:59 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/27 10:07:44 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_tile(t_data *img, int start_x, int start_y, char tile)
 	y = 0;
 	if (tile == '1')
 	{
-		while (y <= T_HEIGTH)
+		while (y <= T_HEIGHT)
 		{
 			while (x <= T_WIDTH)
 				my_mlx_pixel_put(img, start_x + x++, start_y + y, 16711680);
@@ -32,7 +32,7 @@ void	draw_tile(t_data *img, int start_x, int start_y, char tile)
 	}
 	x = 1;
 	y = 1;
-	while (y < T_HEIGTH)
+	while (y < T_HEIGHT)
 	{
 		while (x < T_WIDTH)
 			my_mlx_pixel_put(img, start_x + x++, start_y + y, 8421504);
@@ -51,7 +51,7 @@ void	draw_flat_map(t_main *main, t_data *img)
 	x = 0;
 	y = 0;
 	start_x = T_WIDTH;
-	start_y = T_HEIGTH;
+	start_y = T_HEIGHT;
 	while (main->map[y] != NULL)
 	{
 		while (main->map[y][x] != '\0')
@@ -62,7 +62,7 @@ void	draw_flat_map(t_main *main, t_data *img)
 			start_x += T_WIDTH;
 		}
 		y++;
-		start_y += T_HEIGTH;
+		start_y += T_HEIGHT;
 		x = 0;
 		start_x = T_WIDTH;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/26 20:32:54 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/27 10:16:28 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
+void	draw_3d(t_hive *hive);
+
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
 
@@ -186,6 +188,10 @@ void	check_player_direction(t_main *main);
 # define MAP_IS_NOT_CLOSED		15
 # define PLAYER_DOES_NOT_EXIST	16
 
+//Screen size
+# define S_WIDTH 1024
+# define S_HEIGHT 720
+
 //Colors
 # define B "\033[0m"
 # define RED "\033[0;31m"
@@ -194,7 +200,6 @@ void	check_player_direction(t_main *main);
 # define CYAN "\033[0;36m"
 
 //Moving
-
 # ifdef __APPLE__
 #  define LEFT_KEY	124
 #  define RIGHT_KEY	123
@@ -213,7 +218,7 @@ void	check_player_direction(t_main *main);
 #  define ESC_KEY	65307
 # endif
 
-# define T_HEIGTH	32
+# define T_HEIGHT	32
 # define T_WIDTH	32
 
 //Things
