@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 10:16:28 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:59:17 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
-void	draw_3d(t_hive *hive);
+void	draw_3d(t_hive *hive, int i);
 
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);

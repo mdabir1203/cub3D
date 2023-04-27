@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 11:07:00 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:58:33 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	draw_2d_rays(t_hive *h)
 	{
 		h->angle++;
 		dda(h, 0xFFFF00);
+		draw_3d(h, i);
 		i++;
 	}
 	h->angle -= 30;
@@ -145,7 +146,6 @@ int	render(t_hive *h)
 	draw_flat_map(h->main, h->data);
 	draw_2d_rays(h);
 	draw_player(h, h->data);
-	draw_3d(h);
 	while (x++ < S_WIDTH || y++ < S_HEIGHT)
 		my_mlx_pixel_put(h->data, x, y, 178024024);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
