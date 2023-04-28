@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:32:54 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 10:15:48 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:06:46 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,8 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 	double	magnitude_vertical_v;
 
 	smallest_magnitude = 0;
-	magnitude_horizontal_v = sqrt(fabs(h->c_hor_x * h->c_hor_x - h->p_c_x * h->p_c_x) + fabs(h->c_hor_y * h->c_hor_y - h->p_c_y * h->p_c_y));
-	magnitude_vertical_v = sqrt(fabs(h->c_ver_x * h->c_ver_x - h->p_c_x * h->p_c_x) + fabs(h->c_ver_y * h->c_ver_y - h->p_c_y * h->p_c_y));
+	magnitude_horizontal_v = sqrt(fabs(pow(h->c_hor_x - h->p_c_x, 2)) + fabs(pow(h->c_hor_y - h->p_c_y, 2)));
+	magnitude_vertical_v = sqrt(fabs(pow(h->c_ver_x - h->p_c_x, 2)) + fabs(pow(h->c_ver_y - h->p_c_y, 2)));
 	if (abs((h->angle + h->p_offset) % 180) == 90)
 		magnitude_horizontal_v = magnitude_vertical_v + 10;
 	if (abs((h->angle + h->p_offset) % 180) == 0)
@@ -198,6 +198,7 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		h->line[1] = h->p_c_y;
 		h->line[2] = h->c_hor_x;
 		h->line[3] = h->c_hor_y;
+		h->wall_color = 178102255;
 		smallest_magnitude = magnitude_horizontal_v;
 	}
 	else
@@ -206,6 +207,7 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		h->line[1] = h->p_c_y;
 		h->line[2] = h->c_ver_x;
 		h->line[3] = h->c_ver_y;
+		h->wall_color = 0x00FFFF;
 		smallest_magnitude = magnitude_vertical_v;
 	}
 	draw_line(h, color);

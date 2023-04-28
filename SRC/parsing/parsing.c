@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:11:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/17 10:42:15 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static void	check_for_open_walls(t_main *main)
 /**
  * FUNCTION: (parsing) hauses the functions that are used to do the parsing.
  * 				1. @find_elements: it goes through the file and checks for the
- * 					elements like: texures of the walls and the ceiling and floor colors.
+ * 					elements like: texures of the walls and the ceiling and ground colors.
  * 				2. @find_map: it uses it to locate the map in the file and save it.
  * 				3. @check_player_direction: it checks for the players location.
  * 				4. @check_for_open_walls: it checks for the open walls.

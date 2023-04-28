@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing2d_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:12:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 10:07:44 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:18:10 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	draw_tile(t_data *img, int start_x, int start_y, char tile)
 		}
 		return ;
 	}
-	x = 1;
-	y = 1;
-	while (y < T_HEIGHT)
-	{
-		while (x < T_WIDTH)
-			my_mlx_pixel_put(img, start_x + x++, start_y + y, 8421504);
-		x = 1;
-		y++;
-	}
+	// x = 1;
+	// y = 1;
+	// while (y < T_HEIGHT)
+	// {
+	// 	while (x < T_WIDTH)
+	// 		my_mlx_pixel_put(img, start_x + x++, start_y + y, 8421504);
+	// 	x = 1;
+	// 	y++;
+	// }
 }
 
 void	draw_flat_map(t_main *main, t_data *img)

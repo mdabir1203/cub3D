@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 10:16:28 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_main
 	char	*east_t;
 	char	**map;
 	int		height;
-	int		floor;
+	int		ground;
 	int		roof;
 }				t_main;
 
@@ -99,6 +99,7 @@ typedef struct s_hive
 	int		wall_side;
 	int		real_angle;
 	double	shortest_dist_to_wall;
+	int		wall_color;
 }				t_hive;
 
 //	============>	parsing	==========================
@@ -152,7 +153,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
-void	draw_3d(t_hive *hive);
+void	draw_3d(t_hive *hive, int i, int a);
 
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
@@ -189,8 +190,8 @@ void	check_player_direction(t_main *main);
 # define PLAYER_DOES_NOT_EXIST	16
 
 //Screen size
-# define S_WIDTH 1024
-# define S_HEIGHT 720
+# define S_WIDTH 1920
+# define S_HEIGHT 1080
 
 //Colors
 # define B "\033[0m"
@@ -218,8 +219,8 @@ void	check_player_direction(t_main *main);
 #  define ESC_KEY	65307
 # endif
 
-# define T_HEIGHT	32
-# define T_WIDTH	32
+# define T_HEIGHT	20
+# define T_WIDTH	20
 
 //Things
 # define D_NO "./default_north.xpm"

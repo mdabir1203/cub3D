@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 10:13:00 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	initialize_main(t_main *main)
 	main->south_t = NULL;
 	main->west_t = NULL;
 	main->east_t = NULL;
-	main->floor = 0;
+	main->ground = 0;
 	main->roof = 0;
 	main->map = NULL;
 }

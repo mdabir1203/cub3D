@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:21:44 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	check_for_tabs(t_main *main, char *buffer)
 /**
  * FUNCTION: (check_file_config) it just checks that the map
  * 				would be after the information about the map like
- * 				ceiling floor color and the texures for each wall.
+ * 				ceiling ground color and the texures for each wall.
  * 				Also, checks for the tab using (check_for_tabs) function.
  */
 static void	check_file_config(t_main *main)

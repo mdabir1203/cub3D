@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/27 11:07:00 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:19:54 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,19 +115,25 @@ void	player_rotation(t_hive *h, char indentifier, int offset)
 void	draw_2d_rays(t_hive *h)
 {
 	int i = -30;
+	int a = 0;
 	
 	h->angle = h->angle - 30;
 	while (i < 0)
 	{
 		h->angle++;
 		dda(h, 0xFFFF00);
+		draw_3d(h, i, a);
+		a++;
 		i++;
 	}
 	dda(h, 0x00FF00);
+	draw_3d(h, i, a);
 	while (i < 30)
 	{
 		h->angle++;
 		dda(h, 0xFFFF00);
+		draw_3d(h, i, a);
+		a++;
 		i++;
 	}
 	h->angle -= 30;
@@ -142,12 +148,12 @@ int	render(t_hive *h)
 	h->data->img = mlx_new_image(h->vars->mlx, S_WIDTH, S_HEIGHT);
 	h->data->addr = mlx_get_data_addr(h->data->img, &h->data->bits_per_pixel, \
 	&h->data->line_length, &h->data->endian);
-	draw_flat_map(h->main, h->data);
 	draw_2d_rays(h);
+	draw_flat_map(h->main, h->data);
 	draw_player(h, h->data);
-	draw_3d(h);
-	while (x++ < S_WIDTH || y++ < S_HEIGHT)
-		my_mlx_pixel_put(h->data, x, y, 178024024);
+	//draw_3d(h);
+	//while (x++ < S_WIDTH || y++ < S_HEIGHT)
+	//	my_mlx_pixel_put(h->data, x, y, 178024024);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_destroy_image(h->vars->mlx, h->data->img);
 	return (0);
