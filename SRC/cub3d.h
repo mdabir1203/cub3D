@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:34:03 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
 void	draw_3d(t_hive *hive, int i, int a);
-
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
 

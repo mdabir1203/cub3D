@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 18:54:45 by rehernan          #+#    #+#             */
-/*   Updated: 2023/04/28 18:30:27 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:33:33 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,4 @@ void	draw_3d(t_hive *h, int i, int a)
 		x++;
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/28 18:19:54 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:35:01 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,6 @@ int	render(t_hive *h)
 	draw_2d_rays(h);
 	draw_flat_map(h->main, h->data);
 	draw_player(h, h->data);
-	//draw_3d(h);
-	//while (x++ < S_WIDTH || y++ < S_HEIGHT)
-	//	my_mlx_pixel_put(h->data, x, y, 178024024);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_destroy_image(h->vars->mlx, h->data->img);
 	return (0);
