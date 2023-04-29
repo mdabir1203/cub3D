@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/28 18:34:03 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 00:19:50 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_hive
 	int		p_c_y;
 	int		c_tile_pos_x;
 	int		c_tile_pos_y;
-	int		angle;
+	double	angle;
 	int		r[8];
 	int		p_c[8];
 	int		p_m[8];
@@ -97,7 +97,7 @@ typedef struct s_hive
 	double	vertical_y_scaling;
 	int		quadrant;
 	int		wall_side;
-	int		real_angle;
+	double	real_angle;
 	double	shortest_dist_to_wall;
 	int		wall_color;
 }				t_hive;
@@ -153,7 +153,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
-void	draw_3d(t_hive *hive, int i, int a);
+void	draw_3d(t_hive *hive, int a, double i, double p);
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
 
@@ -189,8 +189,8 @@ void	check_player_direction(t_main *main);
 # define PLAYER_DOES_NOT_EXIST	16
 
 //Screen size
-# define S_WIDTH 1920
-# define S_HEIGHT 1080
+# define S_WIDTH 1280
+# define S_HEIGHT 720
 
 //Colors
 # define B "\033[0m"
@@ -218,8 +218,8 @@ void	check_player_direction(t_main *main);
 #  define ESC_KEY	65307
 # endif
 
-# define T_HEIGHT	20
-# define T_WIDTH	20
+# define T_HEIGHT	32
+# define T_WIDTH	32
 
 //Things
 # define D_NO "./default_north.xpm"
