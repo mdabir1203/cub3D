@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:32:54 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 00:22:32 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:20:57 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	first_horizontal(t_hive *h, int s_t_posx, int s_t_posy)
 	if (fabs(remainder(h->angle + h->p_offset, 180)) == 90)
 		a = 10000000;
 	else
-		a  = fabs(offsety / tan(h->real_angle * M_PI / 180));
-	h->c_horizontal = a / cos(h->real_angle * M_PI / 180);
+		a  = fabs(offsety / tan(h->real_angle * RADIAN));
+	h->c_horizontal = a / cos(h->real_angle * RADIAN);
 	h->c_hor_x = s_t_posx + offsetx + a;
 	if (h->quadrant == 3 || h->quadrant == 4)
 		h->c_hor_y = h->p_c_y + offsety;
@@ -39,7 +39,7 @@ void	first_horizontal(t_hive *h, int s_t_posx, int s_t_posy)
 
 void	rest_horizontal(t_hive *h, int s_t_posy, int step)
 {
-	h->c_horizontal = h->horizontal_y / sin(h->real_angle * M_PI / 180);
+	h->c_horizontal = h->horizontal_y / sin(h->real_angle * RADIAN);
 	if (h->quadrant == 4 || h->quadrant == 3)
 		h->c_hor_y = s_t_posy + (T_HEIGHT) + ((T_HEIGHT) * step);
 	else
@@ -63,8 +63,8 @@ void	first_vertical(t_hive *h, int s_t_posx, int s_t_posy)
 	if (fabs(remainder(h->angle + h->p_offset, 180)) == 0)
 		b = 10000000;
 	else
-		b = fabs(a * tan(h->real_angle * M_PI / 180));
-	h->c_vertical = b / sin(h->real_angle * M_PI / 180);
+		b = fabs(a * tan(h->real_angle * RADIAN));
+	h->c_vertical = b / sin(h->real_angle * RADIAN);
 	h->c_ver_x = s_t_posx;
 	h->c_ver_y =  s_t_posy + offsety - b;
 	if (h->quadrant == 1 || h->quadrant == 4)
@@ -76,7 +76,7 @@ void	first_vertical(t_hive *h, int s_t_posx, int s_t_posy)
 void	rest_vertical(t_hive *h, int s_t_posx, int step)
 {
 	h->c_ver_x = s_t_posx + (T_WIDTH) * step + (T_WIDTH);
-	h->c_vertical = h->vertical_x / cos(h->real_angle * M_PI / 180);
+	h->c_vertical = h->vertical_x / cos(h->real_angle * RADIAN);
 	if (h->quadrant == 3 || h->quadrant == 4)
 		h->c_ver_y = h->c_ver_y + h->vertical_y_scaling;
 	else
@@ -163,7 +163,7 @@ void	count_horizontal_scaling(t_hive *h)
 	if (fabs(remainder(h->angle + h->p_offset, 180)) == 90)
 		h->horizontal_x_scaling = 10000000;
 	else
-		h->horizontal_x_scaling  =  fabs(T_HEIGHT / tan(h->real_angle * M_PI / 180));
+		h->horizontal_x_scaling  =  fabs(T_HEIGHT / tan(h->real_angle * RADIAN));
 	h->horizontal_y = T_HEIGHT;
 }
 
@@ -172,7 +172,7 @@ void	count_vertical_scaling(t_hive *h)
 	if (fabs(remainder(h->angle + h->p_offset, 180)) == 0)
 		h->vertical_y_scaling = 10000000;
 	else
-		h->vertical_y_scaling = fabs(tan(h->real_angle * M_PI / 180) * T_WIDTH);
+		h->vertical_y_scaling = fabs(tan(h->real_angle * RADIAN) * T_WIDTH);
 	h->vertical_x = T_WIDTH;
 }
 
@@ -223,12 +223,8 @@ void	dda(t_hive *h, int color)
 
 	vertical_wall = 0;
 	horizontal_wall = 0;
-	(void)color;
-	//printf("offset: %d\n", h->p_offset);
 	h->real_angle = fabs((double)90 - remainder(h->angle + (double)h->p_offset, (double)180));
-	//printf("real_angle: %f\n", h->real_angle);
 	decide_quodrant(h);
-	//printf("quodrant: %d\n", h->quadrant);
 	h->c_tile_pos_x = (h->p_c_x - T_WIDTH) / T_WIDTH;
 	h->c_tile_pos_y = (h->p_c_y - T_WIDTH) / T_WIDTH; 
 	int	s_t_posx = (T_HEIGHT + (h->c_tile_pos_x  * T_HEIGHT));

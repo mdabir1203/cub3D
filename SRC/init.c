@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:05:41 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	initialize_hive(t_hive *hive)
 	hive->angle = 0;
 	hive->move = 15;
 	hive->p_offset = 0;
+	hive->one_colum_increase = (double)60 / S_WIDTH;
+	hive->p_dist_from_projection_plane = (S_WIDTH / 2) / tan(30 * RADIAN);
 	i = 0;
 	while (i < 8)
 	{

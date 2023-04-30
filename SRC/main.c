@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 00:23:25 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:35:47 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	player_rotation(t_hive *h, char indentifier, int offset)
 	double	c;	
 	int		tmp_x;
 
-	s = sin((h->angle + offset) * M_PI / 180);
-	c = cos((h->angle + offset) * M_PI / 180);
+	s = sin((h->angle + offset) * RADIAN);
+	c = cos((h->angle + offset) * RADIAN);
 	if (indentifier == 'r')
 	{
 		tmp_x = h->r[0];
@@ -114,39 +114,26 @@ void	player_rotation(t_hive *h, char indentifier, int offset)
 
 void	draw_2d_rays(t_hive *h)
 {
-	double	p_dist_from_projection_plane;
-	double	one_colum_increase;
-	double	i = -30;
-	int a = 0;
+	int 	a;
+	double	fov;
 
-	one_colum_increase = (double)60 / S_WIDTH;
-	p_dist_from_projection_plane = (S_WIDTH / 2) / tan(30 * M_PI / 180);
-	//printf("check_tan(30): %f\n", tan(30));
-	//printf("30 -> radians: %f\n", (double)30 * (M_PI / (double)180));
-	//printf("h->angle: %f\n", h->angle);
-	//printf("one_colum_inc: %f, p_dist_from_proj_plane: %f\n", one_colum_increase, p_dist_from_projection_plane);
+	a =  0;
+	fov = -30;
 	h->angle -= 30;
 	while (a < S_WIDTH)
 	{
 		dda(h, 0xFFFF00);
-		draw_3d(h, a, i, p_dist_from_projection_plane);
-		h->angle += one_colum_increase;
-		//printf("h->angle: %f\n", h->angle);
-		i += one_colum_increase;
+		draw_3d(h, a, fov);
+		h->angle += h->one_colum_increase;
+		fov += h->one_colum_increase;
 		a++;
 	}
 	h->angle = h->angle - 30;
-	//draw_3d(h, i, a);
-	dda(h, 0xFF0000);
-	printf("shortest1: %f\n", h->shortest_dist_to_wall);
-	h->angle -= 30;
-	dda(h, 0x00FF00);
-	printf("shortest2: %f\n", h->shortest_dist_to_wall);
-	h->angle += 60;
-	dda(h, 0x00FF00);
-	printf("shortest3: %f\n", h->shortest_dist_to_wall);
-	h->angle -= 30;
-	printf("h->angle_back: %f\n", h->angle);
+}
+
+void	draw_minimap(t_hive *h)
+{
+	draw_flat_map(h->main, h->data);
 }
 
 int	render(t_hive *h)
@@ -160,8 +147,8 @@ int	render(t_hive *h)
 	&h->data->line_length, &h->data->endian);
 	printf("check angle: %f\n", h->angle);
 	draw_2d_rays(h);
-	//draw_flat_map(h->main, h->data);
 	draw_player(h, h->data);
+	draw_minimap(h);
 	printf("check angle1: %f\n", h->angle);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, h->data->img, 0, 0);
 	mlx_destroy_image(h->vars->mlx, h->data->img);
