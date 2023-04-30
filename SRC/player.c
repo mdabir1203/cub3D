@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:30:40 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 00:28:41 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:24:36 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,6 @@ void	choose_dir(t_hive *h)
 
 void	draw_rectangle(t_hive *h)
 {
-	int	i;
-
-	i = 0;
 	choose_dir(h);
 	// while (i <= 10)
 	// {

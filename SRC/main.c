@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 13:35:47 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:24:25 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,10 +138,6 @@ void	draw_minimap(t_hive *h)
 
 int	render(t_hive *h)
 {
-	int x;
-	int y;
-	x = 0;
-	y = 0;
 	h->data->img = mlx_new_image(h->vars->mlx, S_WIDTH, S_HEIGHT);
 	h->data->addr = mlx_get_data_addr(h->data->img, &h->data->bits_per_pixel, \
 	&h->data->line_length, &h->data->endian);
