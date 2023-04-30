@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:11:11 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:09:22 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 13:06:43 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:17:15 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <math.h>
 # include "../libftprintf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 typedef struct s_vars {
 	void	*mlx;
@@ -33,6 +34,8 @@ typedef struct s_vars {
 typedef struct s_data {
 	void	*img;
 	char	*addr;
+	int		height;
+	int		width;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -46,14 +49,16 @@ typedef struct s_main
 	char	p_pos_y;
 	int		p_x;
 	int		p_y;
-	char	*north_t;
-	char	*south_t;
-	char	*west_t;
-	char	*east_t;
+	void	*north_t;
+	void	*south_t;
+	void	*west_t;
+	void	*east_t;
 	char	**map;
 	int		height;
 	int		ground;
 	int		roof;
+	int		h_hit;
+	int		v_hit;
 }				t_main;
 
 typedef struct s_brezenham
@@ -138,15 +143,16 @@ void	parsing(t_main *main, char **argv);
 //texure_handling.c
 char	*save_element(t_main *main, char *buffer);
 void	take_care_of_texure(char *buffer, t_main *main, char name);
+void	load_xpm(t_hive *hive);
 
 //utils.c
 bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
-void	draw_line(t_hive *h, int color);
+void	draw_line(t_hive *h, int color, int is_texture);
 
 //	============>	drawing	==========================
 
-void	dda(t_hive *h, int color);
+void	dda(t_hive *h);
 
 void	player_rotation(t_hive *h, char indentifier, int offset);
 
@@ -156,6 +162,8 @@ void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
 void	draw_3d(t_hive *hive, int a, double i);
+void	put_textures(t_hive *hive);
+
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
 
@@ -227,10 +235,10 @@ void	check_player_direction(t_main *main);
 # define T_WIDTH	32
 
 //Things
-# define D_NO "./default_north.xpm"
-# define D_SO
-# define D_WE
-# define D_EA
+# define D_NO "./textures/default_north.xpm"
+# define D_SO "./textures/default_south.xpm"
+# define D_WE "./textures/default_eas2.xpm"
+# define D_EA "./textures/default_east.xpm"
 # define D_F "220,100,0"
 # define D_C "225,30,0"
 

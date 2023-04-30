@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 15:24:25 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:09:58 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	draw_2d_rays(t_hive *h)
 	h->angle -= 30;
 	while (a < S_WIDTH)
 	{
-		dda(h, 0xFFFF00);
+		dda(h);
 		draw_3d(h, a, fov);
 		h->angle += h->one_colum_increase;
 		fov += h->one_colum_increase;
@@ -161,6 +161,7 @@ int	main(int argc, char **argv)
 	check_basic_errors(hive->main, argc, argv);
 	parsing(hive->main, argv);
 	initialize_mlx(hive->data, hive->vars);
+	load_xpm(hive);
 	hive->p_c_x = T_WIDTH + (hive->main->p_x * (T_WIDTH)) + ((T_WIDTH) / 2);
 	hive->p_c_y = T_HEIGHT + (hive->main->p_y * (T_HEIGHT)) + ((T_HEIGHT) / 2);
 	hive->c_tile_pos_x = hive->main->p_x;

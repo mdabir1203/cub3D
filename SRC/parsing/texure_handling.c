@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texure_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:30:45 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:22:01 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:08:58 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,18 @@ char	*save_element(t_main *main, char *buffer)
 	return (element_path);
 }
 
+void	load_xpm(t_hive *hive)
+{
+	hive->main->north_t = mlx_xpm_file_to_image(hive->vars->mlx, \
+		D_NO, &(hive->data->width), &(hive->data->height));
+	hive->main->south_t = mlx_xpm_file_to_image(hive->vars->mlx, \
+		D_SO, &(hive->data->width), &(hive->data->height));
+	hive->main->west_t = mlx_xpm_file_to_image(hive->vars->mlx, \
+		D_WE, &(hive->data->width), &(hive->data->height));
+	hive->main->east_t = mlx_xpm_file_to_image(hive->vars->mlx, \
+		D_EA, &(hive->data->width), &(hive->data->height));
+}
+
 void	take_care_of_texure(char *buffer, t_main *main, char name)
 {
 	if (name == 'N')
@@ -95,4 +107,3 @@ void	take_care_of_texure(char *buffer, t_main *main, char name)
 		main->east_t = save_element(main, buffer);
 	}
 }
-
