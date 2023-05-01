@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 18:54:45 by rehernan          #+#    #+#             */
-/*   Updated: 2023/04/30 19:36:45 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:26:16 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	put_textures(t_hive *hive)
 		{
 			addr = img_n->data + (0 % hive->data->height * \
 				hive->data->line_length + 0 * (hive->data->bits_per_pixel / 8));
-			draw_line(hive, *(unsigned int *)addr, 1);
+			draw_line(hive, *(unsigned int *)addr, img_n);
 		}
 		else
 		{
 			addr = img_s->data + (0 % hive->data->height * \
 				hive->data->line_length + 0 * (hive->data->bits_per_pixel / 8));
-			draw_line(hive, *(unsigned int *)addr/ 2 & 0b011111110111111101111111, 1);
+			draw_line(hive, *(unsigned int *)addr/ 2 & 0b011111110111111101111111, img_s);
 		}
 	}
 	else
@@ -42,13 +42,13 @@ void	put_textures(t_hive *hive)
 		{
 			addr = img_e->data + (0 % hive->data->height * \
 				hive->data->line_length + 0 * (hive->data->bits_per_pixel / 8));
-			draw_line(hive, *(unsigned int *)addr, 1);
+			draw_line(hive, *(unsigned int *)addr, img_e);
 		}
 		else
 		{
 			addr = img_w->data + (0 % hive->data->height * \
 				hive->data->line_length + 0 * (hive->data->bits_per_pixel / 8));
-			draw_line(hive, *(unsigned int *)addr/ 2 & 0b011111110111111101111111, 1);
+			draw_line(hive, *(unsigned int *)addr/ 2 & 0b011111110111111101111111, img_w);
 		}
 	}
 }

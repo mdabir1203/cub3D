@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:01:30 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 19:40:50 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:24:41 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void	pixel_placement_decider(t_hive *h, int x, int color)
 	}
 }
 
-static void	draw_low_slope(t_hive *h, int color, int texture)
+static void	draw_low_slope(t_hive *h, int color, void *texture)
 {
+	(void)texture;
 	h->b->direction = 1;
 	h->b->delta_x = h->line[2] - h->line[0];
 	h->b->delta_y = h->line[3] - h->line[1];
@@ -53,20 +54,19 @@ static void	draw_low_slope(t_hive *h, int color, int texture)
 	h->b->decision_v = (2 * h->b->delta_y) - h->b->delta_x;
 	while (h->line[0] <= h->line[2])
 	{
-		if (texture)
-		{
-			addr = get color from texture;
-			color = *(unsigned int *)addr;
-		}
-		// 	load_xpm(h);
+		// if (texture)
+		// {
+		// 	addr = get color from texture;
+		// 	color = *(unsigned int *)addr;
+		// }
 		pixel_placement_decider(h, 1, color);
 		h->line[0]++;
 	}
 }
 
-static void	draw_high_slope(t_hive *h, int color, int is_texture)
+static void	draw_high_slope(t_hive *h, int color, void *texture)
 {
-	(void) is_texture;
+	(void)texture;
 	h->b->direction = 1;
 	h->b->delta_x = h->line[2] - h->line[0];
 	h->b->delta_y = h->line[3] - h->line[1];
@@ -78,8 +78,11 @@ static void	draw_high_slope(t_hive *h, int color, int is_texture)
 	h->b->decision_v = (2 * h->b->delta_x) - h->b->delta_y;
 	while (h->line[1] <= h->line[3])
 	{
-		//if (is_texture)
-			//load_xpm(h);
+		// if (texture)
+		// {
+		// 	addr = get color from texture;
+		// 	color = *(unsigned int *)addr;
+		// }
 		pixel_placement_decider(h, 0, color);
 		h->line[1]++;
 	}

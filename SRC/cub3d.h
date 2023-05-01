@@ -6,7 +6,7 @@
 /*   By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 19:17:15 by rehernan         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:24:00 by rehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	load_xpm(t_hive *hive);
 //utils.c
 bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
-void	draw_line(t_hive *h, int color, int is_texture);
+void	draw_line(t_hive *h, int color, void *texture);
 
 //	============>	drawing	==========================
 
