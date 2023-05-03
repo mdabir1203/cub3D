@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:32:54 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 13:20:57 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:37:59 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		h->line[3] = h->c_hor_y;
 		h->wall_color = 178102255;
 		smallest_magnitude = magnitude_horizontal_v;
+		h->x_ray = true;
 	}
 	else
 	{
@@ -210,6 +211,7 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		h->line[3] = h->c_ver_y;
 		h->wall_color = 0x00FFFF;
 		smallest_magnitude = magnitude_vertical_v;
+		h->x_ray = false;
 	}
 	(void)color;
 	//draw_line(h, color);

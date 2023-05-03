@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:30:40 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 00:28:41 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:56:07 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,5 @@ void	draw_player(t_hive *h, t_data *img)
 {
 	draw_rectangle(h);
 	(void)img;
-	//my_mlx_pixel_put(img, h->p_c_x, h->p_c_y, 3139839);
+	my_mlx_pixel_put(img, h->p_c_x, h->p_c_y, 3139839);
 }

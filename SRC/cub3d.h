@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 13:06:43 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/03 23:42:09 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdbool.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <limits.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -29,6 +30,25 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 }				t_vars;
+
+typedef struct s_texture
+{
+	void	*img;
+	char 	*data;
+	int		size_line;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}				t_texture;
+
+typedef struct s_wall_texures
+{
+	t_texture	*texture_north;
+	t_texture	*texture_south;
+	t_texture	*texture_west;
+	t_texture	*texture_east;
+}				t_wall_tex;		
 
 typedef struct s_data {
 	void	*img;
@@ -66,10 +86,11 @@ typedef struct s_brezenham
 
 typedef struct s_hive
 {
-	t_main	*main;
-	t_data	*data;
-	t_vars	*vars;
-	t_brez	*b;
+	t_main		*main;
+	t_data		*data;
+	t_vars		*vars;
+	t_brez		*b;
+	t_wall_tex	*wall_tex;
 	int		line[4];
 	int		p_c_x;
 	int		p_c_y;
@@ -91,6 +112,7 @@ typedef struct s_hive
 	double	c_hor_y;
 	double	c_ver_x;
 	double	c_ver_y;
+	bool	x_ray;
 	double	horizontal_x_scaling;
 	int		horizontal_y;
 	int		vertical_x;
@@ -102,6 +124,8 @@ typedef struct s_hive
 	double	one_colum_increase;
 	double	p_dist_from_projection_plane;
 	int		wall_color;
+	double	texure_to_tile_ratio_x;
+	double	texure_to_lineH_ratio_y;
 }				t_hive;
 
 //	============>	parsing	==========================
@@ -227,7 +251,7 @@ void	check_player_direction(t_main *main);
 # define T_WIDTH	32
 
 //Things
-# define D_NO "./default_north.xpm"
+# define D_NO "/Users/lkavalia/school/Cub3d/textures/default_north.xpm"
 # define D_SO
 # define D_WE
 # define D_EA
