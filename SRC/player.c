@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:30:40 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/30 14:56:07 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:17:51 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,6 @@ void	choose_dir(t_hive *h)
 
 void	draw_rectangle(t_hive *h)
 {
-	int	i;
-
-	i = 0;
 	choose_dir(h);
 	// while (i <= 10)
 	// {

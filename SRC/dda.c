@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:32:54 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/02 12:37:59 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:17:14 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ int	check_horizontal_wall(t_hive *h)
 {
 	int	wallx;
 	int	wally;
-	
+
 	wallx = (h->c_hor_x - T_WIDTH) / (T_WIDTH);
 	if (h->quadrant == 3 || h->quadrant == 4)
 		wally = (h->c_hor_y - T_HEIGHT) / (T_HEIGHT);
 	else
 		wally = (h->c_hor_y - T_HEIGHT) / (T_HEIGHT) - 1;
-	if (wally >= 0 && wally < h->main->height && wallx >= 0 && wallx < (int)ft_strlen(h->main->map[wally]))
+	if (wally >= 0 && wally < h->main->height && wallx >= 0 && \
+		wallx < (int)ft_strlen(h->main->map[wally]))
 	{
 		if (h->main->map[wally][wallx] == '1')
 			return (1);
@@ -115,7 +116,8 @@ int	check_vertical_wall(t_hive *h)
 	else
 		wallx = (h->c_ver_x - T_WIDTH) / (T_WIDTH) - 1;
 	wally = (h->c_ver_y - T_HEIGHT) / T_HEIGHT;
-	if (wally >= 0 && wally < h->main->height && wallx >= 0 && wallx < (int)ft_strlen(h->main->map[wally]))
+	if (wally >= 0 && wally < h->main->height && \
+		wallx >= 0 && wallx < (int)ft_strlen(h->main->map[wally]))
 	{
 		if (h->main->map[wally][wallx] == '1')
 			return (1);
@@ -125,16 +127,17 @@ int	check_vertical_wall(t_hive *h)
 	return (0);
 }
 
-void	decide_quodrant(t_hive *h)
+void	decide_quadrant(t_hive *h)
 {
 	int	angle = ((int)h->angle + h->p_offset) % 360;
+
 	if (h->angle + h->p_offset >= 0)
 	{
 		if (angle < 90)
 			h->quadrant = 1;
 		else
 		{
-			if (angle  >= 90 && angle < 180)
+			if (angle >= 90 && angle < 180)
 				h->quadrant = 4;
 			else if (angle >= 180 && angle < 270)
 				h->quadrant = 3;
@@ -144,7 +147,7 @@ void	decide_quodrant(t_hive *h)
 	}
 	else
 	{
-		if  (angle > -90)
+		if (angle > -90)
 			h->quadrant = 2;
 		else
 		{
@@ -176,7 +179,7 @@ void	count_vertical_scaling(t_hive *h)
 	h->vertical_x = T_WIDTH;
 }
 
-double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color)
+double	calculate_distances_draw(t_hive *h)
 {
 	double	smallest_magnitude;
 	double	magnitude_horizontal_v;
@@ -189,9 +192,9 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		magnitude_horizontal_v = magnitude_vertical_v + 10;
 	if (fabs(remainder(h->angle + h->p_offset, 180)) == 0)
 		magnitude_vertical_v = magnitude_horizontal_v + 10;
-	if (ver_wall == 2)
+	if (h->main->v_hit == 2)
 		magnitude_vertical_v = magnitude_horizontal_v + 10;
-	if (hor_wall == 2)
+	if (h->main->h_hit == 2)
 		magnitude_horizontal_v = magnitude_vertical_v + 10;
 	if (magnitude_horizontal_v < magnitude_vertical_v)
 	{
@@ -199,7 +202,7 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		h->line[1] = h->p_c_y;
 		h->line[2] = h->c_hor_x;
 		h->line[3] = h->c_hor_y;
-		h->wall_color = 178102255;
+		//h->wall_color = 178102255;
 		smallest_magnitude = magnitude_horizontal_v;
 		h->x_ray = true;
 	}
@@ -209,24 +212,19 @@ double	calculate_distances_draw(t_hive *h, int ver_wall, int hor_wall, int color
 		h->line[1] = h->p_c_y;
 		h->line[2] = h->c_ver_x;
 		h->line[3] = h->c_ver_y;
-		h->wall_color = 0x00FFFF;
+		//h->wall_color = 0x00FFFF;
 		smallest_magnitude = magnitude_vertical_v;
 		h->x_ray = false;
 	}
-	(void)color;
-	//draw_line(h, color);
 	return (smallest_magnitude);
 }
 
-void	dda(t_hive *h, int color)
+void	dda(t_hive *h)
 {
-	int		vertical_wall;
-	int		horizontal_wall;
-
-	vertical_wall = 0;
-	horizontal_wall = 0;
+	h->main->v_hit = 0;
+	h->main->h_hit = 0;
 	h->real_angle = fabs((double)90 - remainder(h->angle + (double)h->p_offset, (double)180));
-	decide_quodrant(h);
+	decide_quadrant(h);
 	h->c_tile_pos_x = (h->p_c_x - T_WIDTH) / T_WIDTH;
 	h->c_tile_pos_y = (h->p_c_y - T_WIDTH) / T_WIDTH; 
 	int	s_t_posx = (T_HEIGHT + (h->c_tile_pos_x  * T_HEIGHT));
@@ -235,30 +233,30 @@ void	dda(t_hive *h, int color)
 	first_vertical(h, s_t_posx, s_t_posy);
 	count_horizontal_scaling(h);
 	count_vertical_scaling(h);
-	horizontal_wall = check_horizontal_wall(h);
-	vertical_wall = check_vertical_wall(h);
+	h->main->h_hit = check_horizontal_wall(h);
+	h->main->v_hit = check_vertical_wall(h);
 	int	step = 1;
-	while (horizontal_wall == 0)
+	while (h->main->h_hit == 0)
 	{
 		if (fabs(remainder(h->angle + h->p_offset, 180)) == 90)
 			break;
 		rest_horizontal(h, s_t_posy, step);
-		horizontal_wall = check_horizontal_wall(h);
-		if (horizontal_wall != 0)
+		h->main->h_hit = check_horizontal_wall(h);
+		if (h->main->h_hit != 0)
 			break;
 		step++;
 	}
 	step = 1;
-	while (vertical_wall == 0)
+	while (h->main->v_hit == 0)
 	{
 		if (fabs(remainder(h->angle + h->p_offset, 180)) == 0)
 			break;
 		rest_vertical(h, s_t_posx, step);
-		vertical_wall = check_vertical_wall(h);
-		if (vertical_wall != 0)
+		h->main->v_hit = check_vertical_wall(h);
+		if (h->main->v_hit != 0)
 			break;
 		step++;
 	}
-	if (vertical_wall != 0 && horizontal_wall != 0)
-		h->shortest_dist_to_wall = calculate_distances_draw(h, vertical_wall, horizontal_wall, color);
+	if (h->main->v_hit != 0 && h->main->h_hit != 0)
+		h->shortest_dist_to_wall = calculate_distances_draw(h);
 }

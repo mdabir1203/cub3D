@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/03 23:42:09 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:16:49 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <math.h>
 # include "../libftprintf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 typedef struct s_vars {
 	void	*mlx;
@@ -53,6 +54,8 @@ typedef struct s_wall_texures
 typedef struct s_data {
 	void	*img;
 	char	*addr;
+	int		height;
+	int		width;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -66,14 +69,16 @@ typedef struct s_main
 	char	p_pos_y;
 	int		p_x;
 	int		p_y;
-	char	*north_t;
-	char	*south_t;
-	char	*west_t;
-	char	*east_t;
+	void	*north_t;
+	void	*south_t;
+	void	*west_t;
+	void	*east_t;
 	char	**map;
 	int		height;
 	int		ground;
 	int		roof;
+	int		h_hit;
+	int		v_hit;
 }				t_main;
 
 typedef struct s_brezenham
@@ -162,15 +167,16 @@ void	parsing(t_main *main, char **argv);
 //texure_handling.c
 char	*save_element(t_main *main, char *buffer);
 void	take_care_of_texure(char *buffer, t_main *main, char name);
+void	load_xpm(t_hive *hive);
 
 //utils.c
 bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
-void	draw_line(t_hive *h, int color);
+void	draw_line(t_hive *h, int color, void *texture);
 
 //	============>	drawing	==========================
 
-void	dda(t_hive *h, int color);
+void	dda(t_hive *h);
 
 void	player_rotation(t_hive *h, char indentifier, int offset);
 
@@ -180,6 +186,8 @@ void	draw_flat_map(t_main *main, t_data *data);
 void	draw_player(t_hive *h, t_data *img);
 
 void	draw_3d(t_hive *hive, int a, double i);
+void	put_textures(t_hive *hive);
+
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
 

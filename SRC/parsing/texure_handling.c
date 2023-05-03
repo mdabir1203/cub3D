@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:30:45 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/16 17:22:01 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:23:18 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,3 @@ void	take_care_of_texure(char *buffer, t_main *main, char name)
 		main->east_t = save_element(main, buffer);
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/04 00:09:00 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:17:40 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	draw_2d_rays(t_hive *h)
 	h->angle -= 30;
 	while (a < S_WIDTH)
 	{
-		dda(h, 0xFFFF00);
+		dda(h);
 		draw_3d(h, a, fov);
 		h->angle += h->one_colum_increase;
 		fov += h->one_colum_increase;
@@ -138,10 +138,6 @@ void	draw_minimap(t_hive *h)
 
 int	render(t_hive *h)
 {
-	int x;
-	int y;
-	x = 0;
-	y = 0;
 	h->data->img = mlx_new_image(h->vars->mlx, S_WIDTH, S_HEIGHT);
 	h->data->addr = mlx_get_data_addr(h->data->img, &h->data->bits_per_pixel, \
 	&h->data->line_length, &h->data->endian);
