@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:19:31 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/04/28 18:26:13 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:12:15 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_exiterr(int err)
 		ft_putstr_fd(RED "Map is not closed!\n" B, 2);
 	else if (err == PLAYER_DOES_NOT_EXIST)
 		ft_putstr_fd(RED "Player does not exist in the map!\n" B, 2);
+	else if (err == XPM_HAS_FAILED_TO_OPEN)
+		ft_putstr_fd(RED "XPM has failed to be opened!\n" B, 2);
 	exit (err);
 }
 

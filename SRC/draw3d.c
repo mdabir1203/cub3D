@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 18:54:45 by rehernan          #+#    #+#             */
-/*   Updated: 2023/05/04 00:17:30 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:47:43 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,37 @@ int	get_start_row(double lineH)
 	return (0);
 }
 
+t_texture	*choose_texture(t_hive *h)
+{
+	if (h->x_ray == true)
+	{
+		if (h->quadrant == 1 || h->quadrant == 2)
+			return (h->wall_tex->texture_north);
+		else
+			return (h->wall_tex->texture_south);
+	}
+	else
+	{
+		if (h->quadrant == 1 || h->quadrant == 4)
+			return (h->wall_tex->texture_east);
+	}
+	return (h->wall_tex->texture_west);
+}
+
 void	draw_vertical_line(t_hive *h, double temp_lineH)
 {
 	int		y1;
 	int		row;
 	int		column;
 	int		ver_tex_line;
+	t_texture	*chosen_texture;
 
 	y1 = h->line[1];
 	row = get_start_row(temp_lineH);
 	ver_tex_line = 0;
-	h->texure_to_tile_ratio_x = h->wall_tex->texture_north->img_width / (double)T_WIDTH;
-	h->texure_to_lineH_ratio_y = h->wall_tex->texture_north->img_height / temp_lineH;
+	chosen_texture = choose_texture(h);
+	h->texure_to_tile_ratio_x = chosen_texture->img_width / (double)T_WIDTH;
+	h->texure_to_lineH_ratio_y = chosen_texture->img_height / temp_lineH;
 	if (h->x_ray == true)
 		ver_tex_line = fmod(h->c_hor_x, T_WIDTH);
 	else
@@ -50,7 +69,7 @@ void	draw_vertical_line(t_hive *h, double temp_lineH)
 	while (y1 != h->line[3])
 	{
 		my_mlx_pixel_put(h->data, h->line[0], y1, \
-				my_mlx_pixel_get(h, h->wall_tex->texture_north, column, row * h->texure_to_lineH_ratio_y));
+				my_mlx_pixel_get(h, chosen_texture, column, row * h->texure_to_lineH_ratio_y));
 		y1++;
 		row++;
 	}
@@ -58,11 +77,10 @@ void	draw_vertical_line(t_hive *h, double temp_lineH)
 
 void	draw_3d(t_hive *h, int a, double fov)
 {
-	double	fish_eye_compensation;
 	double	lineH;
 	double	temp_lineH;
+	double	fish_eye_compensation;
 
-	(void)a;
 	fish_eye_compensation = fabs(h->shortest_dist_to_wall * cos(fov * RADIAN));
 	lineH = fabs((T_WIDTH / fish_eye_compensation) * h->p_dist_from_projection_plane);
 	if (lineH > S_HEIGHT)
@@ -78,7 +96,9 @@ void	draw_3d(t_hive *h, int a, double fov)
 	h->line[3] = (S_HEIGHT / 2) + (lineH / 2);	//y2
 	draw_vertical_line(h, temp_lineH);
 	h->line[1] = (S_HEIGHT / 2) + (lineH / 2);	//y1
-	h->line[3] = S_HEIGHT;	//y2
-	draw_line(h, 0x00AA00, 0);
-	//put_textures(h);
+	h->line[3] = S_HEIGHT;						//y2
+	draw_line(h, h->main->ground);
+	h->line[1] = (S_HEIGHT / 2) - (lineH / 2);	//y1
+	h->line[3] = 0;
+	draw_line(h, h->main->roof);
 }

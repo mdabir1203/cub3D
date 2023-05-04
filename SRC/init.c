@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/04 00:07:10 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:27:18 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	initialize_main(t_main *main)
 	main->south_t = NULL;
 	main->west_t = NULL;
 	main->east_t = NULL;
-	main->ground = 0;
-	main->roof = 0;
+	main->ground = -1;
+	main->roof = -1;
 	main->map = NULL;
 }
 

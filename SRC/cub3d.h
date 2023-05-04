@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/04 00:16:49 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:53:59 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,11 +172,19 @@ void	load_xpm(t_hive *hive);
 //utils.c
 bool	match(char *searched, char *str);
 void	open_the_file(t_main *main, char **argv);
-void	draw_line(t_hive *h, int color, void *texture);
+void	draw_line(t_hive *h, int color);
 
 //	============>	drawing	==========================
 
-void	dda(t_hive *h);
+//raycasting.c
+void	raycasting(t_hive *h);
+
+//raycasting2.c
+int		check_horizontal_wall(t_hive *h);
+int		check_vertical_wall(t_hive *h);
+void	count_horizontal_scaling(t_hive *h);
+void	count_vertical_scaling(t_hive *h);
+double	calculate_dist_draw(t_hive *h, int hor_hit, int ver_hit);
 
 void	player_rotation(t_hive *h, char indentifier, int offset);
 
@@ -190,7 +198,6 @@ void	put_textures(t_hive *hive);
 
 //colors.c
 void	take_care_of_color(char *buffer, t_main *m, char id);
-
 void	dda_line(t_hive *hive);
 
 //free.c
@@ -221,6 +228,7 @@ void	check_player_direction(t_main *main);
 # define MORE_THAN_ONE_PLAYER	14
 # define MAP_IS_NOT_CLOSED		15
 # define PLAYER_DOES_NOT_EXIST	16
+# define XPM_HAS_FAILED_TO_OPEN	17
 
 //Screen size
 # define S_WIDTH 1280
@@ -236,7 +244,7 @@ void	check_player_direction(t_main *main);
 //Radians
 # define RADIAN (M_PI / 180)
 
-//Moving
+//Keys
 # ifdef __APPLE__
 #  define LEFT_KEY	124
 #  define RIGHT_KEY	123
@@ -255,16 +263,16 @@ void	check_player_direction(t_main *main);
 #  define ESC_KEY	65307
 # endif
 
+//Tile sizes
 # define T_HEIGHT	32
 # define T_WIDTH	32
 
-//Things
-# define D_NO "/Users/lkavalia/school/Cub3d/textures/default_north.xpm"
-# define D_SO
-# define D_WE
-# define D_EA
-# define D_F "220,100,0"
-# define D_C "225,30,0"
+//Textures and colors
+# define D_NO "/Users/lkavalia/school/Cub3d/assets/textures/default_north.xpm"
+# define D_EA "/Users/lkavalia/school/Cub3d/assets/textures/default_east.xpm"
+# define D_SO "/Users/lkavalia/school/Cub3d/assets/textures/default_south.xpm"
+# define D_WE "/Users/lkavalia/school/Cub3d/assets/textures/default_west.xpm"
+# define D_F 0xDC6400
+# define D_C 0xE11E00
 
-//Keys
 #endif

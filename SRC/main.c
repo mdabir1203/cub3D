@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/04 00:17:40 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:35:05 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,15 @@ void	player_rotation(t_hive *h, char indentifier, int offset)
 
 void	draw_2d_rays(t_hive *h)
 {
-	int 	a;
+	int		a;
 	double	fov;
 
-	a =  0;
+	a = 0;
 	fov = -30;
 	h->angle -= 30;
 	while (a < S_WIDTH)
 	{
-		dda(h);
+		raycasting(h);
 		draw_3d(h, a, fov);
 		h->angle += h->one_colum_increase;
 		fov += h->one_colum_increase;
@@ -156,21 +156,36 @@ void	load_texure(t_texture *texture, t_hive *h, char *texure_path)
 {
 	texture->img_height = 0;
 	texture->img_width = 0;
-	//printf("%s\n", h->main->north_t);
 	texture->img = mlx_xpm_file_to_image(h->vars->mlx, texure_path, &texture->img_width, &texture->img_height);
 	if (texture->img == NULL)
-		printf(RED"XPM has failed!\n"B);
+		ft_exiterr(XPM_HAS_FAILED_TO_OPEN);
 	printf("width: %d height: %d\n", texture->img_width, texture->img_height);
 	texture->data = mlx_get_data_addr(texture->img, &texture->bpp, &texture->size_line, &texture->endian);
 	mlx_put_image_to_window(h->vars->mlx, h->vars->win, texture->img, texture->img_width, texture->img_height);
 }
 
-void	load_wall_texures(t_hive *h)
+void	load_assets(t_hive *h)
 {
-	load_texure(h->wall_tex->texture_north, h, h->main->north_t);
-	load_texure(h->wall_tex->texture_south, h, h->main->south_t);
-	load_texure(h->wall_tex->texture_east, h, h->main->east_t);
-	load_texure(h->wall_tex->texture_west, h, h->main->west_t);
+	if (h->main->north_t != NULL)
+		load_texure(h->wall_tex->texture_north, h, h->main->north_t);
+	else
+		load_texure(h->wall_tex->texture_north, h, D_NO);
+	if (h->main->south_t != NULL)
+		load_texure(h->wall_tex->texture_south, h, h->main->south_t);
+	else
+		load_texure(h->wall_tex->texture_south, h, D_SO);
+	if (h->main->east_t != NULL)
+		load_texure(h->wall_tex->texture_east, h, h->main->east_t);
+	else
+	 	load_texure(h->wall_tex->texture_east, h, D_EA);
+	if (h->main->west_t != NULL)
+		load_texure(h->wall_tex->texture_west, h, h->main->west_t);
+	else
+		load_texure(h->wall_tex->texture_west, h, D_WE);
+	if (h->main->ground == -1)
+		h->main->ground  = D_F;
+	if (h->main->roof == -1)
+		h->main->roof  = D_C;
 }
 
 int	main(int argc, char **argv)
@@ -183,7 +198,7 @@ int	main(int argc, char **argv)
 	check_basic_errors(hive->main, argc, argv);
 	parsing(hive->main, argv);
 	initialize_mlx(hive->data, hive->vars);
-	load_wall_texures(hive);
+	load_assets(hive);
 	hive->p_c_x = T_WIDTH + (hive->main->p_x * (T_WIDTH)) + ((T_WIDTH) / 2);
 	hive->p_c_y = T_HEIGHT + (hive->main->p_y * (T_HEIGHT)) + ((T_HEIGHT) / 2);
 	hive->c_tile_pos_x = hive->main->p_x;
