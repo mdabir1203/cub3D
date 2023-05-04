@@ -1,7 +1,7 @@
-NO ./textures/Hotpot.xpm
-SO ./textures/default_east.xpm
-WE ./textures/default_north.xpm
-EA ./textures/default_south.xpm
+NO ./assets/textures/Hotpot.xpm
+SO ./assets/textures/default_east.xpm
+WE ./assets/textures/default_north.xpm
+EA ./assets/textures/default_south.xpm
 
 F 220,100,0
 C 25,40,125
