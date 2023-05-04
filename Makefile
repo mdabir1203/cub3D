@@ -6,7 +6,7 @@
 #    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/05/04 00:19:50 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/05/04 14:48:25 by lkavalia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-all: submodule $(NAME)
+all: $(NAME)
 
 UNAME := $(shell uname)
 %.o: %.c
@@ -46,8 +46,7 @@ minilibx-linux/libmlx.a:
 	cp MLX/libmlx.a
 	@echo "Making MLX..."
 
-submodule:
-	@git submodule update --init
+
 
 ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
