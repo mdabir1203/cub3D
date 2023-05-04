@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rehernan <rehernan@students.42wolfsburg    +#+  +:+       +#+         #
+#    By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 17:40:51 by rehernan          #+#    #+#              #
-#    Updated: 2022/03/04 12:24:57 by rehernan         ###   ########.fr        #
+#    Updated: 2023/05/04 19:43:34 by mabbas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,15 @@ $(NAME): $(OUTPUT) libft/libft.a
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 libft/libft.a:
-	make -C libft
-	cp ./libft/libft.a $(NAME)
+	@make -C libft
+	@cp ./libft/libft.a $(NAME)
 
 clean:
-	rm -f $(OUTPUT)
+	@rm -f $(OUTPUT)
 
 fclean: clean
-	make -C libft fclean
-	rm -f $(NAME)
+	@make -C libft fclean
+	@rm -f $(NAME)
 
 re: fclean all
 

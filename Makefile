@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 12:35:38 by lkavalia          #+#    #+#              #
-#    Updated: 2023/05/04 14:48:25 by lkavalia         ###   ########.fr        #
+#    Updated: 2023/05/04 19:46:02 by mabbas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,35 +46,33 @@ minilibx-linux/libmlx.a:
 	cp MLX/libmlx.a
 	@echo "Making MLX..."
 
-
-
 ifeq ($(UNAME), Darwin)
 $(NAME): libftprintf/libftprintf.a $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit libftprintf.a -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit ./libftprintf/libftprintf.a -o $(NAME)
 endif
 
 ifeq ($(UNAME), Linux)
-$(NAME): libftprintf/libftprintf.a minilibx-linux/libmlx.a $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) minilibx-linux/libmlx.a -L/usr/include/X11/extensions -lX11 -lXext -lm libftprintf.a -o $(NAME)
+$(NAME): /libftprintf/libftprintf.a minilibx-linux/libmlx.a $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) minilibx-linux/libmlx.a -L/usr/include/X11/extensions -lX11 -lXext -lm -o $(NAME)
 endif
 
 libftprintf/libftprintf.a:
-	make -C libftprintf
-	cp libftprintf/libftprintf.a .
+	@make -C libftprintf
+#mv libftprintf/libftprintf.a .
 	@echo "Making libftprintf..."
 
 clean:
-	make -C libftprintf clean
-	rm libftprintf.a
-	rm -f $(OBJS)
+	@make -C libftprintf clean
+#rm libftprintf.a
+	@rm -f $(OBJS)
 	@echo "cleaning..."
 
 fclean: clean
-	make -C libftprintf fclean
-	rm -f $(NAME)
+	@make -C libftprintf fclean
+	@rm -f $(NAME)
 	@echo "fully cleaning..."
 
 re: fclean all
 	@echo "remaking files..."
 
-.PHONY: all clean fclean re submodule
+.PHONY: all clean fclean re
