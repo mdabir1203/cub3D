@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 20:54:28 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/08 00:30:26 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:56:00 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	position_offset(t_main *main, t_hive *hive)
 {
-	if (hive->move < 5)
-		freeing_hive(hive, SPEED_TO_LITTLE);
 	if (main->p_dir == 'N')
 		hive->p_offset = 0;
 	else if (hive->main->p_dir == 'E')

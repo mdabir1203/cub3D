@@ -6,23 +6,49 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:28:17 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/08 00:25:16 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:13:00 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	freeing_hive(t_hive *hive, int error_code)
+void	destroy_wall_texures(t_hive *hive)
 {
-	free(hive->data);
-	free(hive->vars);
-	free(hive->b);
-	free(hive->wall_tex->texture_east);
-	free(hive->wall_tex->texture_north);
-	free(hive->wall_tex->texture_south);
-	free(hive->wall_tex->texture_west);
+	if (hive->wall_tex->texture_east != NULL)
+	{
+		mlx_destroy_image(hive->vars->mlx, hive->wall_tex->texture_east->img);
+		free(hive->wall_tex->texture_east);
+	}
+	if (hive->wall_tex->texture_north != NULL)
+	{
+		mlx_destroy_image(hive->vars->mlx, hive->wall_tex->texture_north->img);
+		free(hive->wall_tex->texture_north);
+	}
+	if (hive->wall_tex->texture_south != NULL)
+	{
+		mlx_destroy_image(hive->vars->mlx, hive->wall_tex->texture_south->img);
+		free(hive->wall_tex->texture_south);
+	}
+	if (hive->wall_tex->texture_west != NULL)
+	{
+		mlx_destroy_image(hive->vars->mlx, hive->wall_tex->texture_west->img);
+		free(hive->wall_tex->texture_west);
+	}
 	free(hive->wall_tex);
-	parsing_cleaning(hive->main, NULL, error_code);
+}
+
+void	freeing_hive(t_hive *hive)
+{
+	if (hive->b != NULL)
+		free(hive->b);
+	destroy_wall_texures(hive);
+	mlx_destroy_window(hive->vars->mlx, hive->vars->win);
+	if (hive->data != NULL)
+		free(hive->data);
+	if (hive->vars != NULL)
+		free(hive->vars);
+	clear_the_main_struct(hive->main);
+	free(hive->main);
 	free(hive);
 }
 
@@ -37,8 +63,7 @@ void	parsing_cleaning(t_main *main, char *arr, int err)
 
 int	close_game(t_hive *hive)
 {
-	mlx_destroy_window(hive->vars->mlx, hive->vars->win);
-	freeing_hive(hive, 2000);
+	freeing_hive(hive);
 	exit(0);
 }
 

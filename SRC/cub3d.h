@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/08 00:30:43 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:58:21 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	take_care_of_color(char *buffer, t_main *m, char id);
 void	dda_line(t_hive *hive);
 
 //free.c
-void	freeing_hive(t_hive *hive, int error_code);
+void	freeing_hive(t_hive *hive);
 void	parsing_cleaning(t_main *main, char *arr, int err);
 int		close_game(t_hive *hive);
 void	clear_the_main_struct(t_main *main);

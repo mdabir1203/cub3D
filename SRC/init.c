@@ -6,7 +6,7 @@
 /*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/07 23:45:15 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:09:26 by lkavalia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	calloc_struct(t_hive *hive)
 	hive->wall_tex->texture_south = ft_calloc(sizeof(t_texture), 1);
 	hive->wall_tex->texture_west = ft_calloc(sizeof(t_texture), 1);
 	hive->wall_tex->texture_east = ft_calloc(sizeof(t_texture), 1);
+	hive->b->decision_v = 0;
+	hive->b->delta_x = 0;
+	hive->b->delta_y = 0;
+	hive->b->direction = 0;
 }
 
 void	initialize_hive(t_hive *hive, t_main *main)
@@ -51,21 +55,21 @@ void	initialize_hive(t_hive *hive, t_main *main)
 	int	i;
 
 	i = 0;
-	calloc_struct(hive);
-	hive->b->decision_v = 0;
-	hive->b->delta_x = 0;
-	hive->b->delta_y = 0;
-	hive->b->direction = 0;
-	while (i < 4)
-		hive->line[i++] = 0;
-	hive->angle = 0;
 	hive->move = 15;
+	if (hive->move < 5)
+	{
+		free(hive);
+		parsing_cleaning(main, NULL, SPEED_TO_LITTLE);
+	}
+	calloc_struct(hive);
+	hive->angle = 0;
 	hive->p_offset = 0;
 	hive->one_colum_increase = (double)60 / S_WIDTH;
 	hive->p_dist_from_projection_plane = (S_WIDTH / 2) / tan(30 * RADIAN);
-	i = 0;
 	while (i < 8)
 	{
+		if (i < 4)
+			hive->line[i] = 0;
 		hive->p_c[i] = 0;
 		hive->p_m[i++] = 0;
 	}
