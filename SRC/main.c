@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/09 03:55:29 by mabbas           ###   ########.fr       */
+/*   Updated: 2023/05/09 04:15:12 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void hooks_n_loops(t_hive *hive)
 {
 	hive->p_c_x = TILE + (hive->main->p_x * (TILE)) + ((TILE) / 2);
 	hive->p_c_y = TILE + (hive->main->p_y * (TILE)) + ((TILE) / 2);
+	play_music();
 	mlx_hook(hive->vars->win, 2, (1L) << 0, &key_hook, hive);
 	mlx_hook(hive->vars->win, 17, 0L, close_game, hive);
 	mlx_loop_hook(hive->vars->mlx, &render, hive);
@@ -80,11 +81,12 @@ int	main(int argc, char **argv)
 	t_main	*main;
 
 	hive = NULL;
+	hive = ft_calloc(sizeof(t_hive), 1);
 	main = ft_calloc(sizeof(t_main), 1);
 	initialize_main(main);
+	initialize_hive(hive, main);
 	check_basic_errors(main, argc, argv);
 	parsing(main, argv);
-	initialize_hive(hive, main);
 	position_offset(main, hive);
 	initialize_mlx(hive->data, hive->vars);
 	load_assets(hive);
