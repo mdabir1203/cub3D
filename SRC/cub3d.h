@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:00:09 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/08 12:58:21 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/09 04:06:56 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,9 @@ void	load_assets(t_hive *h);
 
 //wall_colision.c
 int		wall_colision_check(t_hive *h, int keycode);
+
+void	play_music(void);
+
 
 //ERROR Codes
 # define SPEED_TO_LITTLE		-5
