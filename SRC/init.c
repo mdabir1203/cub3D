@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:19 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/08 13:09:26 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/09 04:09:30 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	initialize_hive(t_hive *hive, t_main *main)
 {
 	int	i;
 
+	calloc_struct(hive);
 	i = 0;
 	hive->move = 15;
 	if (hive->move < 5)
@@ -61,7 +62,6 @@ void	initialize_hive(t_hive *hive, t_main *main)
 		free(hive);
 		parsing_cleaning(main, NULL, SPEED_TO_LITTLE);
 	}
-	calloc_struct(hive);
 	hive->angle = 0;
 	hive->p_offset = 0;
 	hive->one_colum_increase = (double)60 / S_WIDTH;
