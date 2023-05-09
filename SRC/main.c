@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkavalia <lkavalia@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:05 by lkavalia          #+#    #+#             */
-/*   Updated: 2023/05/07 23:52:17 by lkavalia         ###   ########.fr       */
+/*   Updated: 2023/05/09 03:55:29 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ int	render(t_hive *h)
 	return (0);
 }
 
+void hooks_n_loops(t_hive *hive)
+{
+	hive->p_c_x = TILE + (hive->main->p_x * (TILE)) + ((TILE) / 2);
+	hive->p_c_y = TILE + (hive->main->p_y * (TILE)) + ((TILE) / 2);
+	mlx_hook(hive->vars->win, 2, (1L) << 0, &key_hook, hive);
+	mlx_hook(hive->vars->win, 17, 0L, close_game, hive);
+	mlx_loop_hook(hive->vars->mlx, &render, hive);
+	mlx_loop(hive->vars->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_hive	*hive;
@@ -74,16 +84,10 @@ int	main(int argc, char **argv)
 	initialize_main(main);
 	check_basic_errors(main, argc, argv);
 	parsing(main, argv);
-	hive = ft_calloc(sizeof(t_hive), 1);
 	initialize_hive(hive, main);
 	position_offset(main, hive);
 	initialize_mlx(hive->data, hive->vars);
 	load_assets(hive);
-	hive->p_c_x = TILE + (hive->main->p_x * (TILE)) + ((TILE) / 2);
-	hive->p_c_y = TILE + (hive->main->p_y * (TILE)) + ((TILE) / 2);
-	mlx_hook(hive->vars->win, 2, (1L) << 0, &key_hook, hive);
-	mlx_hook(hive->vars->win, 17, 0L, close_game, hive);
-	mlx_loop_hook(hive->vars->mlx, &render, hive);
-	mlx_loop(hive->vars->mlx);
+	hooks_n_loops(hive);
 	return (0);
 }
