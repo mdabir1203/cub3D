@@ -13,11 +13,11 @@ This is a brief description of the project.
 
 ### Raycasting
 
-Imagine that I'm standing in the middle of a 3D world, with a beam of light shooting straight out from my eyes. 
-This beam travels through the world, bouncing off walls and objects, until it collides with something. 
-By measuring the distance the beam traveled before it collided, I can determine how far away the object is from me.
-Now, here's where it gets really interesting. Using some fancy math, I can use the direction that the beam is pointing in, along with the distance to the object it hit, to create a 3D image of the world on my 2D screen. It's almost like magic - I can see the depth and texture of objects in the world, even though they're really just 2D images on my screen.
-It's kind of like being a detective, piecing together clues to figure out what's really going on in the world around me. And the best part is, I can do all of this in real-time, as I move through the world and my beam of light bounces off different objects. It's like having a superpower that lets me see the world in a whole new way.
+Imagine that We are standing in the middle of a 3D world, with a line shooting straight out from our eyes. 
+This line travels through the world, until it collides with our specified objects. 
+By measuring the distance the beam traveled before it collided, We can determine how far away the object is from us.
+Now, here's where it gets really interesting. Using some fancy math, We can use the direction that the beam is pointing in, along with the distance to the object it hit, to create a 3D image of the world on our 2D screen. It's almost like magic - We can see the depth and texture of objects in the world, even though they're really just 2D images on my screen.
+It's kind of like being a detective, piecing together clues to figure out what's really going on in the world around me. And the best part is, We can do all of this in real-time, as We move through the world and the raycasted beam travels forward until it collides with the wall in front of us.
 
 
 # Flowchar 
