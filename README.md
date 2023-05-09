@@ -9,7 +9,7 @@ This is a brief description of the project.
 - [Usage](#usage)
 
 
-## Comcepts
+## Concepts
 
 ### Raycasting
 
