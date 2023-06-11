@@ -2,7 +2,7 @@
 
 This is a brief description of the project.
 
-![alt text](https://github.com/LukasKava/cub3D/Screen Shot 2023-06-11 at 1.23.10 PM.png)
+![alt text](https://github.com/LukasKava/cub3D/Cub3d.png)
 
 ## Table of Contents
 
