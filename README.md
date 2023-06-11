@@ -2,7 +2,7 @@
 
 This is a brief description of the project.
 
-![alt text](Cub3d.png)
+![](Cub3d.png)
 
 ## Table of Contents
 
