@@ -2,7 +2,7 @@
 
 This is a brief description of the project.
 
-![alt text](https://github.com/LukasKava/cub3D/edit/final_release/README.md#:~:text=README.md-,Screen,-Shot%202023%2D06)
+![alt text](https://github.com/LukasKava/cub3D/Screen Shot 2023-06-11 at 1.23.10 PM.png)
 
 ## Table of Contents
 
