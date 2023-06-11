@@ -2,6 +2,8 @@
 
 This is a brief description of the project.
 
+![alt text](https://github.com/LukasKava/cub3D/edit/final_release/README.md#:~:text=README.md-,Screen,-Shot%202023%2D06)
+
 ## Table of Contents
 
 - [Concepts](#concepts)
