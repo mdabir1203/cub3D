@@ -1,56 +1,10 @@
-# Cub3d
+🕹️ Cub3d: Where Pixels Meet Perspective
+Welcome to the rabbit hole of retro gaming reimagined! Cub3d isn't just another 42 school project; it's a time machine that'll teleport you back to the era of pixelated glory while keeping one foot firmly planted in modern coding practices.
+🎮 Nostalgia Meets Ingenuity
+Remember those heart-pounding moments navigating maze-like corridors in Wolfenstein 3D? Now imagine recreating that magic, pixel by painstaking pixel. That's Cub3d for you – a labor of love that marries the charm of 90s gaming with the precision of contemporary C programming.
+🧠 Raycasting: Your New Superpower
+Prepare to don your metaphorical developer cape as you dive into the world of raycasting. You'll bend light to your will, transforming a 2D map into a 3D masterpiece that would make even the most seasoned game devs of yesteryear nod in approval.
+🚀 Beyond the Project: Your Gateway to Graphics Programming
+Cub3d isn't just about ticking boxes on an assignment sheet. It's your golden ticket to the fascinating realm of graphics programming. By the time you're done, you'll be seeing the world in rays and angles, dreaming in textures and sprites.
+Are you ready to challenge your perception, push your coding skills to the limit, and create something that's equal parts nostalgic and groundbreaking? Dive in, and let's turn those cubes into a universe!
 
-This is a brief description of the project.
-
-![](Cub3d.png)
-
-## Table of Contents
-
-- [Concepts](#concepts)
-- [Installation](#installation)
-- [Usage](#usage)
-
-
-## Concepts
-
-### Raycasting
-
-Imagine that We are standing in the middle of a 3D world, with a line shooting straight out from our eyes. 
-This line travels through the world, until it collides with our specified objects. 
-By measuring the distance the beam traveled till it hit the wall. We can determine how far away the object is from us.
-Now, here's where it gets really interesting. Using some fancy math, We can use the direction that the beam is pointing in, along with the distance to the object it hit, to create a 3D image of the world on our 2D screen. It's almost like magic - We can see the depth and texture of objects in the world, even though they're really just 2D images on my screen.
-It's kind of like being a detective, piecing together clues to figure out what's really going on in the world around me. And the best part is, We can do all of this in real-time, as We move through the world and the raycasted beam travels forward until it collides with the wall in front of us.
-
-
-# Flowchar 
-
-
-1. Get player's current position and viewing angle
-2. Loop through each vertical column on the screen
-3. Determine the angle of the current ray based on the player's viewing angle and the current column
-4. Shoot a ray out in the direction of the current angle
-5. Repeat the following steps until the ray hits a wall:
-6. Calculate the distance to the nearest vertical grid line
-7. Calculate the distance to the nearest horizontal grid line
-8. Choose the smaller distance
-9. Calculate the height of the wall based on the distance and the player's viewing angle
-10. Draw a vertical line on the screen at the current column with the calculated height
-11. Repeat steps 2-10 for each column on the screen
-12. END
-
-
-## Installation
-
-1. Clone the repository.
-2. Install required dependencies:
-    ```
-    $ make
-    ```
-3. Run the program:
-    ```
-    $ ./cub3d assets/maps/*.cub
-    ```
-
-## Usage
-
-Explain how to use the program with examples.
